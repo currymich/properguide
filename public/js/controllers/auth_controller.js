@@ -2,26 +2,30 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
   var self    = this;
   var server  = 'http://localhost:3000';
 
-  // function signup(userPass) {
-  //   $http.post(`${server}/users`, { user: userPass })
-  //     .then(function(response) {
-  //       AuthTokenFactory.setToken(response.data.token)
-  //
-  //       $scope.$emit('userLoggedIn', response.data.user);
-  //       $state.go('index');
-  //     });
-  // }
-  //
-  // function login(userPass) {
-  //   $http.post(`${server}/users/login`, { user: userPass })
-  //     .then(function(response) {
-  //       AuthTokenFactory.setToken(response.data.token)
-  //
-  //       $scope.$emit('userLoggedIn', response.data.user);
-  //       // $state.go('index');
-  //     });
-  // }
-  //
+  function signup(userPass) {
+    $http.post(`${server}/users/signup`, { user: userPass })
+      .then(function(response) {
+        AuthTokenFactory.setToken(response.data.token)
+
+        console.log(repsonse)
+
+        $scope.$emit('userLoggedIn', response.data.user);
+        $state.go('home');
+      });
+  }
+
+  function login(userPass) {
+    $http.post(`${server}/users/login`, { user: userPass })
+      .then(function(response) {
+        AuthTokenFactory.setToken(response.data.token)
+
+        console.log(response)
+
+        $scope.$emit('userLoggedIn', response.data.user);
+        $state.go('home');
+      });
+  }
+
   // function updateUser(userPass) {
   //   $http.put(`${server}/users/edit`, { user: userPass })
   //     .then(function(response) {
@@ -31,16 +35,8 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
   //       $state.go('user-show');
   //     });
   // }
-  //
-  // function logout() {
-  //   AuthTokenFactory.setToken()
-  //
-  //   $scope.$emit('userLoggedOut');
-  //   $state.go('index');
-  // }
-  //
+
   // this.updateUser = updateUser;
-  // this.signup = signup;
-  // this.login = login;
-  // this.logout = logout;
+  this.signup = signup;
+  this.login = login;
 }
