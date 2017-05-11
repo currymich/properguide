@@ -1,4 +1,5 @@
 angular.module('properGuide')
   .controller('AuthController', AuthController)
+  .controller('HomeController', HomeController)
   .factory('AuthTokenFactory', AuthTokenFactory)
   .factory('AuthInterceptor', AuthInterceptor)
