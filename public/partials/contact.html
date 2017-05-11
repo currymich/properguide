@@ -1,3 +1,35 @@
-<h2>Please contact us for information or free consultation:</h2>
+<h2>Please contact us or use the form below for more information:</h2>
 <h3>Email: properguideimplant@gmail.com</h3>
 <h3>Phone: (510) 517-5355</h3>
+
+<div ng-controller="QuestionController as question" id="question_form">
+
+  <br><br>
+  <h3 style="text-align: center">Submit a question here:</h3>
+
+  <form ng-submit="question.submit(question)">
+    <label>Name
+      <input type="text" name="name" ng-model="question.name">
+    </label>
+
+    <label>Phone
+      <input type="text" name="phone" ng-model="question.phone" >
+    </label>
+
+    <label>Email
+      <input type="email" name="email" ng-model="question.email" oninvalid="this.setCustomValidity('Email cannot be left blank')"
+      oninput="setCustomValidity('')" required>
+    </label>
+
+    <label>Subject
+      <input type="text" name="subject" ng-model="question.subject" oninvalid="this.setCustomValidity('Please enter a subject for your question.')"
+      oninput="setCustomValidity('')" required>
+    </label>
+
+    <label>Text
+      <textarea rows="8" cols="36" name="text" ng-model="question.text">Enter text here...</textarea>
+    </label>
+
+    <button type="submit" name="button">Submit Question</button>
+  </form>
+</div>
