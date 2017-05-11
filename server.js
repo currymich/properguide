@@ -7,7 +7,6 @@ var app         = express();
 var port        = process.env.PORT || 4000;
 
 // MIDDLEWARE
-app.use('/css', express.static(path.join(__dirname, '/css')));
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.all('/*', function(req, res, next) {
