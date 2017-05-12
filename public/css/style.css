@@ -3,13 +3,6 @@
   margin: 0;
 }
 
-body {
-  font-size: 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 a {
   color: inherit;
   cursor: pointer;
@@ -55,6 +48,13 @@ form button {
 
 form a {
   margin-top: 2.5em;
+}
+
+body {
+  font-size: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
