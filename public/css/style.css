@@ -9,10 +9,12 @@ Site wide stylings
   margin: 0;
 }
 
+
 body {
   font-size: 20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #444;
+  min-width: 15em;
 }
 
 a {
@@ -204,14 +206,17 @@ main {
 
 }
 
-@media(max-width:900px) {
+@media(max-width:950px) {
 
   header {
-    height: 4em;
+    height: 6em;
+    justify-content: space-around;
+    flex-flow: column nowrap;
   }
 
   header h1 {
     font-size: 1.75em;
+    padding-top: 0.5em;
   }
 
   .divider {
@@ -247,6 +252,10 @@ main {
 
 @media(max-width:650px) {
 
+  header h1 {
+    font-size: 1.5em;
+  }
+
   main {
     padding: 0 1em;
   }
@@ -281,8 +290,12 @@ main {
 
 @media(max-width:450px) {
 
-  main {
-    min-width: 15em;
+  header h1 {
+    font-size: 1.25em;
+  }
+
+  header a {
+    font-size: 0.85em;
   }
 
   .featurette-text h2 {
@@ -299,4 +312,29 @@ main {
   footer p {
     font-size: 0.5em;
   }
+}
+
+@media(max-width:374px) {
+
+  header {
+    height: 10em;
+  }
+
+  header h1 {
+    width: 10em;
+    text-align: center;
+  }
+
+  .featurette-image {
+    width: 10em;
+    height: 10em;
+    border-radius: 10em;
+  }
+
+  nav {
+    padding: 1em 0;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
 }
