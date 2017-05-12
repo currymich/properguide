@@ -1,6 +1,18 @@
+/***********************
+
+Site wide stylings
+
+************************/
+
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+body {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #444;
 }
 
 a {
@@ -13,16 +25,12 @@ img {
   max-width: 100%;
 }
 
-h2 {
-  margin: 0.5em 0;
-}
-
 form {
   width: 30em;
   padding: 0.5em;
   margin: 1em auto;
   border: 1px solid #ccc;
-  background: lightblue;
+  background: lightskyblue;
   border-radius: 3px;
   display: flex;
   flex-flow: column nowrap;
@@ -51,7 +59,6 @@ form a {
 }
 
 body {
-  font-size: 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -59,12 +66,13 @@ body {
 
 header {
   width: 100%;
-  background: lightblue;
+  background: lightskyblue;
   height: 5em;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  transition: height 0.125s;
 }
 
 nav {
@@ -75,13 +83,14 @@ nav {
   align-items: center;
 }
 
-nav a {
+header h1, nav, nav a {
   padding: 0 1em;
+  transition: font-size 0.125s;
 }
 
 footer {
   width: 100%;
-  background: lightblue;
+  background: lightskyblue;
   height: 2.5em;
   display: flex;
   flex-flow: row nowrap;
@@ -93,13 +102,201 @@ footer p {
   font-size: 0.75em;
 }
 
+/**********************
+
+Home landing page styling
+
+***********************/
+
 main {
   flex: 1;
-  width: 80vw;
-  margin: 0 auto;
-  padding: 2.5em 0;
+  padding: 0 2.5em;
 }
 
-main p {
-  margin: 1em 0;
+.divider {
+  margin: 3em 0;
+}
+
+.featurette {
+  overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.featurette * {
+  transition: font-size 0.125s;
+}
+
+.featurette-image {
+  width: 25em;
+  height: 25em;
+  border-radius: 25em;
+  flex: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.featurette-image.pull-right {
+  order: 1;
+  margin-left: 4em;
+}
+
+.featurette-image.pull-left {
+  order: -1;
+  margin-right: 4em;
+}
+
+#goal .featurette-image {
+  background-image: url("../img/stent.jpg");
+}
+
+#role .featurette-image {
+  background-image: url("../img/lecturing.jpg")
+}
+
+/*#together .featurette-image {
+  background-image: url();
+}*/
+
+#vision .featurette-image {
+  background-image: url("../img/stent_guide.jpg");
+}
+
+.featurette-text h2 {
+  font-size: 2.5em;
+}
+
+.featurette-text p {
+  font-size: 1em;
+  padding: 1em 0;
+}
+
+.featurette-text h2 span {
+  color: deepskyblue;
+}
+
+
+@media(max-width:1024px) {
+
+  .divider {
+    margin: 2em 0;
+  }
+
+  .featurette-image {
+    width: 20em;
+    height: 20em;
+    border-radius: 20em;
+  }
+
+  .featurette-image.pull-left {
+    margin-right: 2em;
+  }
+
+  .featurette-image.pull-right {
+    margin-left: 2em;
+  }
+
+  .featurette-text h2 {
+    font-size: 1.75em;
+  }
+
+}
+
+@media(max-width:900px) {
+
+  header {
+    height: 4em;
+  }
+
+  header h1 {
+    font-size: 1.75em;
+  }
+
+  .divider {
+    margin: 1.5em 0;
+  }
+
+  .featurette-image {
+    width: 15em;
+    height: 15em;
+    border-radius: 15em;
+  }
+
+  .featurette-image.pull-left {
+    margin: 0 1em 0 0;
+  }
+
+  .featurette-image.pull-right {
+    margin: 0 0 0 1em;
+    order: 1;
+  }
+
+  .featurette-text h2 {
+    font-size: 1.3em;
+  }
+
+  .featurette-text p {
+    font-size: 0.8em;
+    line-height: 1.25em;
+    padding: 0.5em 0;
+  }
+
+}
+
+@media(max-width:650px) {
+
+  main {
+    padding: 0 1em;
+  }
+
+  .featurette {
+    overflow: hidden;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  .divider {
+    margin: 1.25em 0;
+  }
+
+  .featurette-image {
+    max-width: 15em;
+    width: 60vw;
+    max-height: 15em;
+    height: 60vw;
+    border-radius: 60vw;
+  }
+
+  .featurette-image.pull-right, .featurette-image.pull-left{
+    order: -1;
+    margin: 0 0 1em 0;
+  }
+
+  .featurette-text {
+    text-align: center;
+  }
+}
+
+@media(max-width:450px) {
+
+  main {
+    min-width: 15em;
+  }
+
+  .featurette-text h2 {
+    font-size: 1.0em;
+  }
+
+  .featurette-text p {
+    font-size: 0.75em;
+    line-height: 1.4em;
+    padding: 0.5em 0;
+    font-weight: bold;
+  }
+
+  footer p {
+    font-size: 0.5em;
+  }
 }
