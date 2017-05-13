@@ -32,7 +32,7 @@ form {
   padding: 0.5em;
   margin: 1em auto;
   border: 1px solid #ccc;
-  background: lightskyblue;
+  background: deepskyblue;
   border-radius: 3px;
   display: flex;
   flex-flow: column nowrap;
@@ -68,13 +68,17 @@ body {
 
 header {
   width: 100%;
-  background: lightskyblue;
+  background: deepskyblue;
   height: 5em;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   transition: height 0.125s;
+}
+
+header h1 {
+  font-size: 2.25em;
 }
 
 nav {
@@ -87,12 +91,19 @@ nav {
 
 header h1, nav, nav a {
   padding: 0 1em;
+  color: #fff;
   transition: font-size 0.125s;
+}
+
+header h1:hover, nav a:hover {
+  color: #B1ECFF;
+  cursor: pointer;
 }
 
 footer {
   width: 100%;
-  background: lightskyblue;
+  background: deepskyblue;
+  color: #fff;
   height: 2.5em;
   display: flex;
   flex-flow: row nowrap;
@@ -119,6 +130,14 @@ main {
   margin: 3em 0;
 }
 
+.featurette:first-of-type {
+  margin-top: 4em;
+}
+
+.featurette:last-of-type {
+  margin-bottom: 4em;
+}
+
 .featurette {
   overflow: hidden;
   display: flex;
@@ -130,10 +149,26 @@ main {
   transition: font-size 0.125s;
 }
 
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.gallery-image {
+  margin: 1.5em;
+  width: 20em;
+  height: 20em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .featurette-image {
-  width: 25em;
-  height: 25em;
-  border-radius: 25em;
+  width: 20em;
+  height: 20em;
+  border-radius: 20em;
   flex: none;
   background-repeat: no-repeat;
   background-position: center;
@@ -150,24 +185,9 @@ main {
   margin-right: 4em;
 }
 
-#goal .featurette-image {
-  background-image: url("../img/stent.jpg");
-}
-
-#role .featurette-image {
-  background-image: url("../img/lecturing.jpg")
-}
-
-/*#together .featurette-image {
-  background-image: url();
-}*/
-
-#vision .featurette-image {
-  background-image: url("../img/stent_guide.jpg");
-}
 
 .featurette-text h2 {
-  font-size: 2.5em;
+  font-size: 2.0em;
 }
 
 .featurette-text p {
@@ -179,17 +199,45 @@ main {
   color: deepskyblue;
 }
 
+#goal .featurette-image {
+  background-image: url("../img/stent.jpg");
+}
+
+#role .featurette-image {
+  background-image: url("../img/lecturing.jpg")
+}
+
+#together .featurette-image {
+  background-image: url("../img/lecturing2.jpg");
+}
+
+#vision .featurette-image {
+  background-image: url("../img/stent_guide.jpg");
+}
+
+/*********************
+
+contact page
+
+*********************/
+
+#contact_info {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#contact_info * {
+  margin: 1em;
+}
 
 @media(max-width:1024px) {
 
-  .divider {
-    margin: 2em 0;
+  header h1 {
+    font-size: 2em;
   }
 
-  .featurette-image {
-    width: 20em;
-    height: 20em;
-    border-radius: 20em;
+  .divider {
+    margin: 2em 0;
   }
 
   .featurette-image.pull-left {
@@ -227,6 +275,11 @@ main {
     width: 15em;
     height: 15em;
     border-radius: 15em;
+  }
+
+  .gallery-image {
+    width: 15em;
+    height: 15em;
   }
 
   .featurette-image.pull-left {
@@ -278,6 +331,12 @@ main {
     border-radius: 60vw;
   }
 
+  .gallery-image {
+    margin: 1.0em;
+    width: 60vw;
+    height: 60vw;
+  }
+
   .featurette-image.pull-right, .featurette-image.pull-left{
     order: -1;
     margin: 0 0 1em 0;
@@ -285,6 +344,15 @@ main {
 
   .featurette-text {
     text-align: center;
+  }
+
+  #contact_info h2 {
+    font-size: 1.25em;
+  }
+
+  #contact_info h3 {
+    font-size: 1.0em;
+    margin: 1em 0;
   }
 }
 
@@ -312,6 +380,14 @@ main {
   footer p {
     font-size: 0.5em;
   }
+
+  #contact_info h2 {
+    font-size: 1.0em;
+  }
+
+  #contact_info h3 {
+    font-size: 0.75em;
+  }
 }
 
 @media(max-width:374px) {
@@ -329,6 +405,12 @@ main {
     width: 10em;
     height: 10em;
     border-radius: 10em;
+  }
+
+  .gallery-image {
+    margin: 0.75em;
+    width: 10em;
+    height: 10em;
   }
 
   nav {
