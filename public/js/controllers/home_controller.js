@@ -14,7 +14,5 @@ function HomeController($scope, $http, $state, AuthTokenFactory) {
     $state.go('home')
   }
 
-  self.x = "../img/case1.jpg"
-
   this.logout = logout;
 }
