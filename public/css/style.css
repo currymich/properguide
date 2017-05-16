@@ -179,6 +179,7 @@ main {
   margin: 1.5em;
   width: 20em;
   height: 20em;
+  flex: none;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
