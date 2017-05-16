@@ -177,8 +177,8 @@ main {
 
 .gallery-image {
   margin: 1.5em;
-  width: 20em;
-  height: 20em;
+  max-width: 20em;
+  max-height: 20em;
   flex: none;
   background-repeat: no-repeat;
   background-position: center;
@@ -223,26 +223,6 @@ main {
 
 #vision .featurette-image {
   background-image: url("../img/stent_guide.jpg");
-}
-
-.gallery-image:nth-of-type(1) {
-  background-image: url("../img/case1.jpg");
-}
-
-.gallery-image:nth-of-type(2) {
-  background-image: url("../img/case2.jpg");
-}
-
-.gallery-image:nth-of-type(3) {
-  background-image: url("../img/case3.jpg");
-}
-
-.gallery-image:nth-of-type(4) {
-  background-image: url("../img/advancedcase1.jpg");
-}
-
-.gallery-image:nth-of-type(5) {
-  background-image: url("../img/advancedcase3.jpg");
 }
 
 /*********************
@@ -363,8 +343,8 @@ contact page
   }
 
   .gallery-image {
-    width: 15em;
-    height: 15em;
+    max-width: 15em;
+    max-height: 15em;
   }
 
   .featurette-image.pull-left {
@@ -446,8 +426,8 @@ contact page
 
   .gallery-image {
     margin: 1.0em;
-    width: 60vw;
-    height: 60vw;
+    max-width: 60vw;
+    max-height: 60vw;
   }
 
   .featurette-image.pull-right, .featurette-image.pull-left{
@@ -537,8 +517,8 @@ contact page
 
   .gallery-image {
     margin: 0.75em;
-    width: 10em;
-    height: 10em;
+    max-width: 10em;
+    max-height: 10em;
   }
 
 }
