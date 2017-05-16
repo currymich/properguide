@@ -169,31 +169,22 @@ main {
 }
 
 #gallery {
-  /*display: flex;
+  display: flex;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: space-around;*/
-  overflow: hidden;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  justify-content: space-around;
 }
 
 .gallery-image {
+  margin: 1.5em;
   width: 20em;
-  height: 20em;
-  border-radius: 20em;
-  flex: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  /*margin: 1.5em;
   max-width: 20em;
+  height: 20em;
   max-height: 20em;
   flex: none;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;*/
+  background-size: contain;
 }
 
 .featurette-image {
@@ -244,6 +235,21 @@ main {
   background-image: url("../img/case2.jpg");
 }
 
+#gallery .gallery-image:nth-of-type(3) {
+  background-image: url("../img/case3.jpg");
+}
+
+#gallery .gallery-image:nth-of-type(4) {
+  background-image: url("../img/advancedcase1.jpg");
+}
+
+#gallery .gallery-image:nth-of-type(5) {
+  background-image: url("../img/advancedcase2.png");
+}
+
+#gallery .gallery-image:nth-of-type(6) {
+  background-image: url("../img/advancedcase3.jpg");
+}
 /*********************
 
 contact page
