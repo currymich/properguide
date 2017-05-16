@@ -1,6 +1,6 @@
 function QuestionController($http) {
   var self = this;
-  var server  = 'http://localhost:3000';
+  var server  = 'https://properguide-api.herokuapp.com';
 
   function submit(question) {
     $http.post(`${server}/questions`, { question })

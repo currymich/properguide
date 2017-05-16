@@ -1,6 +1,6 @@
 function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
   var self    = this;
-  var server  = 'http://localhost:3000';
+  var server  = 'https://properguide-api.herokuapp.com';
 
   function signup(userPass) {
     $http.post(`${server}/users/signup`, { user: userPass })
