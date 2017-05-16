@@ -224,6 +224,26 @@ main {
   background-image: url("../img/stent_guide.jpg");
 }
 
+.gallery-image:nth-of-type(1) {
+  background-image: url('../img/case1.jpg');
+}
+
+.gallery-image:nth-of-type(2) {
+  background-image: url('../img/case2.jpg');
+}
+
+.gallery-image:nth-of-type(3) {
+  background-image: url('../img/case3.jpg');
+}
+
+.gallery-image:nth-of-type(4) {
+  background-image: url('../img/advancedcase1.jpg');
+}
+
+.gallery-image:nth-of-type(5) {
+  background-image: url('../img/advancedcase3.jpg');
+}
+
 /*********************
 
 contact page
