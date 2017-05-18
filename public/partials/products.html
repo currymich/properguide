@@ -1,0 +1,10 @@
+<div ng-controller="ProductController as products">
+
+  <h2>All products:</h2>
+  <div class="product" ng-repeat='product in products.all_products'>
+    <h3>{{product.name}}</h3>
+    <img src="{{product.image_url}}">
+    <h4>{{product.price | currency}}</h4>
+  </div>
+
+</div>

@@ -31,9 +31,13 @@ angular.module('properGuide', ['ui.router'])
       url: '/auth/signup',
       templateUrl: 'partials/auth/signup.html'
     })
-    .state('orders', {
-      url: 'users/:userId/orders',
-      templateUrl: 'partials/orders/index.html'
+    .state('cart', {
+      url: '/cart',
+      templateUrl: 'partials/cart.html'
+    })
+    .state('products', {
+      url: '/products',
+      templateUrl: 'partials/products.html'
     })
 
     $locationProvider.html5Mode(true);
