@@ -1,27 +1,6 @@
 <div ng-controller="CartsController as cart">
 
   <h2> Items currently in {{home.currentUser.username}}'s cart:</h2>
-  <div ng-repeat='product in home.currentUser.cart' class="cart_product">
-    <div>
-      <h3>{{product.product.name}}</h3>
-    </div>
-    <div>
-      <h3>{{product.product.price | currency}}</h3>
-    </div>
-    <div>
-      <div>
-        <p>Quantity: {{product.quantity}}</p>
-        <button ng-click="cart.removeFromCart(product, home.currentUser)">Remove</button>
-      </div>
-      <div>
-        <input ng-model="cart.quantityToBuy" type="text" placeholder="{{product.quantity}}">
-        <button ng-click="cart.updateQuantity(product, home.currentUser)">Update</button>
-      </div>
-    </div>
-  </div>
-  <div class="checkout">
-    <button ui-sref="checkout">Checkout</button>
-    <h3>Total Price: {{home.currentUser.cart.totalPrice | currency}}</h3>
-  </div>
+  
 
 </div>
