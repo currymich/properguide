@@ -1,6 +1,14 @@
-<div ng-controller="CartsController as cart">
+<div ng-controller="CartController as cart">
 
-  <h2> Items currently in {{home.currentUser.username}}'s cart:</h2>
-  
+  <h2> Items currently in {{home.currentUser.name}}'s cart:</h2>
+  <div class="product" ng-repeat='cart_item in cart.cart_items'>
+    <br>
+    <h3>{{cart_item.unit_name}}</h3>
+    <img src="{{cart_item.image_url}}">
+    <h4>Price per unit: {{cart_item.unit_price | currency}}</h4>
+    <h4>Quantity: {{cart_item.quantity}}</h4>
+    <h4>Total Price: {{cart_item.total_price}}</h4>
+    <br>
+  </div>
 
 </div>
