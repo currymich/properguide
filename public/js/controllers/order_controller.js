@@ -9,36 +9,35 @@ function OrderController($http, $state, $scope) {
       .then(function(response) {
         console.log(response.data.orders)
         self.all_orders = response.data.orders;
+
+        $state.go('orders')
       });
   }
 
   get_orders();
 
-  function get_order(order) {
-    $http.get(`${server}/orders/${order.id}`)
-      .then(function(response) {
-        console.log(response.data.order)
-        self.active_order = response.data.order;
-      })
-  }
-
   function new_order(order_params) {
     $http.post(`${server}/orders`)
       .then(function(response) {
-        console.log(response)
+        console.log(response.data.orders)
+        self.all_orders = response.data.orders;
+
+        $state.go('orders')
       })
   }
 
   function delete_order(order) {
     $http.delete(`${server}/orders/${order.id}`)
       .then(function(response) {
-        console.log(response.data)
+        console.log(response.data.orders)
+        self.all_orders = response.data.orders;
+
+        $state.go('orders')
       })
   }
 
 
   this.get_orders = get_orders;
-  this.get_order = get_order;
   this.new_order = new_order;
   this.delete_order = delete_order;
 }

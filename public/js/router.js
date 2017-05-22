@@ -27,9 +27,13 @@ angular.module('properGuide', ['ui.router'])
       url: '/auth/login',
       templateUrl: 'partials/auth/login.html'
     })
-    .state('cart', {
-      url: '/cart',
-      templateUrl: 'partials/cart.html'
+    .state('order', {
+      url: '/orders/:order_id',
+      templateUrl: 'partials/order_items.html'
+    })
+    .state('orders', {
+      url: '/orders',
+      templateUrl: 'partials/orders.html'
     })
     .state('products', {
       url: '/products',
