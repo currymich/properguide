@@ -1,0 +1,13 @@
+<div ng-controller="OrderController as orders">
+
+  <h2>Orders</h2>
+  <div class="order" ng-repeat='order in orders.all_orders'>
+    <br>
+    <h3>{{order.patient_name}}</h3>
+    <h4>Total: {{order.total | currency}}</h4>
+    <h4>Count: {{order.count}}</h4>
+    <a ui-sref="order_items({order_id: order.id})">View Order</a>
+    <br>
+  </div>
+
+</div>

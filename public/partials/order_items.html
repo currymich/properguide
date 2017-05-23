@@ -1,0 +1,14 @@
+<div ng-controller="OrderItemController as order_items">
+
+  <h2>Items in order</h2>
+  <div class="product" ng-repeat='order_item in order_items.all_items'>
+    <br>
+    <h3>{{order_item.unit_name}}</h3>
+    <img src="{{order_item.image_url}}">
+    <h4>Price per unit: {{order_item.unit_price | currency}}</h4>
+    <h4>Quantity: {{order_item.quantity}}</h4>
+    <h4>Total Price: {{order_item.total_price}}</h4>
+    <br>
+  </div>
+
+</div>
