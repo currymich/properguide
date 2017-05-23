@@ -10,7 +10,7 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
         console.log(response)
 
         $scope.$emit('userLoggedIn', response.data.user);
-        $state.go('home');
+        $state.go('orders');
       });
   }
 
