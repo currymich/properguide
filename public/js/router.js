@@ -29,11 +29,11 @@ angular.module('properGuide', ['ui.router'])
     })
     .state('orders', {
       url: '/orders',
-      templateUrl: 'partials/orders.html'
+      templateUrl: 'partials/orders/orders.html'
     })
     .state('order_items', {
       url: '/orders/:order_id',
-      templateUrl: 'partials/order_items.html'
+      templateUrl: 'partials/orders/order_items.html'
     })
 
     $locationProvider.html5Mode(true);
