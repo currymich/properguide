@@ -1,7 +1,6 @@
 function ProductController($http) {
   var self    = this;
-  // var server  = 'https://properguide-api.herokuapp.com';
-  var server  = 'http://localhost:3000';
+  var server  = 'https://properguide-api.herokuapp.com';
 
   function get_products() {
     $http.get(`${server}/products`)

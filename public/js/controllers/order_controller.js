@@ -1,9 +1,7 @@
 function OrderController($http, $state, $scope, $window) {
   var self    = this;
   var store = $window.localStorage;
-  // var server  = 'https://properguide-api.herokuapp.com';
-  var server  = 'http://localhost:3000';
-
+  var server  = 'https://properguide-api.herokuapp.com';
 
   function get_order(order) {
     store.setItem('order_id', order.id)

@@ -2,9 +2,7 @@ function OrderItemController($http, $state, $scope, $window) {
   var self    = this;
   var store = $window.localStorage;
   self.active_order = store.getItem('order_id')
-  // var server  = 'https://properguide-api.herokuapp.com';
-  var server  = 'http://localhost:3000';
-
+  var server  = 'https://properguide-api.herokuapp.com';
 
   function get_order_items() {
     $http.get(`${server}/orders/${self.active_order}/order_items`)
