@@ -35,10 +35,6 @@ angular.module('properGuide', ['ui.router'])
       url: '/orders/:order_id',
       templateUrl: 'partials/order_items.html'
     })
-    .state('products', {
-      url: '/products',
-      templateUrl: 'partials/products.html'
-    })
 
     $locationProvider.html5Mode(true);
   }
