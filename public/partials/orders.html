@@ -6,7 +6,7 @@
     <h3>{{order.patient_name}}</h3>
     <h4>Total: {{order.total | currency}}</h4>
     <h4>Count: {{order.count}}</h4>
-    <a ui-sref="order_items({order_id: order.id})">View Order</a>
+    <a ng-click="orders.get_order(order)">View Order</a>
     <br>
   </div>
 
