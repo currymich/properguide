@@ -130,7 +130,7 @@ footer {
   align-items: center;
 }
 
-footer p {
+footer p, footer a {
   font-size: 0.75em;
 }
 
@@ -166,25 +166,6 @@ main {
 
 .featurette * {
   transition: font-size 0.125s;
-}
-
-#gallery {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.gallery-image {
-  margin: 1.5em;
-  width: 20em;
-  max-width: 20em;
-  height: 20em;
-  max-height: 20em;
-  flex: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 }
 
 .featurette-image {
@@ -227,29 +208,6 @@ main {
   background-image: url("../img/stent_guide.jpg");
 }
 
-#gallery .gallery-image:nth-of-type(1) {
-  background-image: url("../img/case1.jpg");
-}
-
-#gallery .gallery-image:nth-of-type(2) {
-  background-image: url("../img/case2.jpg");
-}
-
-#gallery .gallery-image:nth-of-type(3) {
-  background-image: url("../img/case3.jpg");
-}
-
-#gallery .gallery-image:nth-of-type(4) {
-  background-image: url("../img/advancedcase1.jpg");
-}
-
-#gallery .gallery-image:nth-of-type(5) {
-  background-image: url("../img/advancedcase2.png");
-}
-
-#gallery .gallery-image:nth-of-type(6) {
-  background-image: url("../img/advancedcase3.jpg");
-}
 /*********************
 
 contact page
@@ -287,7 +245,58 @@ contact page
   padding: 0.5em;
 }
 
+/*********************
+
+lab page
+
+*********************/
+
+#gallery {
+  margin: 4em 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.gallery-image {
+  margin: 0.5em;
+  width: 25em;
+  max-width: 25em;
+  height: 25em;
+  max-height: 25em;
+  flex: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+#gallery .gallery-image:nth-of-type(1) {
+  background-image: url("../img/case1.jpg");
+}
+
+#gallery .gallery-image:nth-of-type(2) {
+  background-image: url("../img/case2.jpg");
+}
+
+#gallery .gallery-image:nth-of-type(3) {
+  background-image: url("../img/case3.jpg");
+}
+
+#gallery .gallery-image:nth-of-type(4) {
+  background-image: url("../img/advancedcase1.jpg");
+}
+
+#gallery .gallery-image:nth-of-type(5) {
+  background-image: url("../img/advancedcase2.png");
+}
+
+#gallery .gallery-image:nth-of-type(6) {
+  background-image: url("../img/advancedcase3.jpg");
+}
+
 #lab_slips {
+  margin: 4em;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -302,14 +311,35 @@ contact page
 #lab_slips iframe {
   width: 40vw;
   height: 60vw;
-  margin: 0 0.5em;
+  margin: 3em 1em;
 }
 
-/*********************
+#products {
+  margin: 4em 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
 
-products page
+.product {
+  margin: 1.5em 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
 
-*********************/
+.product img {
+  margin: 0.5em;
+  width: 20em;
+  max-width: 20em;
+  height: 20em;
+  max-height: 20em;
+  flex: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
 
 @media(max-width:1100px) {
 
@@ -513,7 +543,7 @@ products page
     font-weight: bold;
   }
 
-  footer p {
+  footer p, footer a {
     font-size: 0.5em;
   }
 
