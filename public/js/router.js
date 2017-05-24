@@ -15,9 +15,9 @@ angular.module('properGuide', ['ui.router'])
       url: '/',
       templateUrl: 'partials/home.html'
     })
-    .state('about', {
-      url: '/about',
-      templateUrl: 'partials/about.html'
+    .state('lab', {
+      url: '/lab',
+      templateUrl: 'partials/lab.html'
     })
     .state('contact', {
       url: '/contact',
@@ -27,13 +27,13 @@ angular.module('properGuide', ['ui.router'])
       url: '/auth/login',
       templateUrl: 'partials/auth/login.html'
     })
-    .state('signup', {
-      url: '/auth/signup',
-      templateUrl: 'partials/auth/signup.html'
-    })
     .state('orders', {
-      url: 'users/:userId/orders',
-      templateUrl: 'partials/orders/index.html'
+      url: '/orders',
+      templateUrl: 'partials/orders/orders.html'
+    })
+    .state('order_items', {
+      url: '/orders/:order_id',
+      templateUrl: 'partials/orders/order_items.html'
     })
 
     $locationProvider.html5Mode(true);

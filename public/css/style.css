@@ -304,6 +304,13 @@ contact page
   height: 60vw;
   margin: 0 0.5em;
 }
+
+/*********************
+
+products page
+
+*********************/
+
 @media(max-width:1100px) {
 
   header {
