@@ -1,16 +1,15 @@
-function OrderItemController($http, $state, $scope) {
+function OrderItemController($http, $state, $scope, $window) {
   var self    = this;
+  var store = $window.localStorage;
+  self.active_order = store.getItem('order_id')
   // var server  = 'https://properguide-api.herokuapp.com';
   var server  = 'http://localhost:3000';
 
 
-  function get_order_items(order) {
-    $http.get(`${server}/orders/${order.id}/order_items`)
+  function get_order_items() {
+    $http.get(`${server}/orders/${self.active_order}/order_items`)
       .then(function(response) {
-        console.log(response.data.order_items)
         self.all_items = response.data.order_items;
-
-        $state.go('order', {order_id: order.id})
       });
   }
 
@@ -19,7 +18,6 @@ function OrderItemController($http, $state, $scope) {
   function add_order_item(order, order_item_params) {
     $http.post(`${server}/orders/${order.id}/order_items`, {order_item_params})
       .then(function(response) {
-        console.log(response.data.order_items)
         self.all_items = response.data.order_items;
 
         $state.go('order', {order_id: order.id})
@@ -29,7 +27,6 @@ function OrderItemController($http, $state, $scope) {
   function update_order_item(order, order_item, order_item_params) {
     $http.patch(`${server}/orders/${order.id}/ordeorder_items/${order_item.id}`)
       .then(function(response) {
-        console.log(response.data.order_items)
         self.all_items = response.data.order_items;
 
         $state.go('order', {order_id: order.id})
@@ -39,7 +36,6 @@ function OrderItemController($http, $state, $scope) {
   function delete_order_item(order_item) {
     $http.delete(`${server}/orders/${order.id}`)
       .then(function(response) {
-        console.log(response.data.order_items)
         self.all_items = response.data.order_items;
 
         $state.go('order', {order_id: order.id})
