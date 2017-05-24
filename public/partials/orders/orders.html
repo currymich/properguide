@@ -1,6 +1,7 @@
 <div ng-controller="OrderController as orders">
 
-  <h2>Orders</h2>
+  <h2>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h2>
+  <a ng-hide="home.currentUser" ui-sref="login">Login</a>
   <div class="order" ng-repeat='order in orders.all_orders'>
     <br>
     <h3>{{order.patient_name}}</h3>
