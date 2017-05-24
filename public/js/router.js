@@ -15,6 +15,10 @@ angular.module('properGuide', ['ui.router'])
       url: '/',
       templateUrl: 'partials/home.html'
     })
+    .state('training', {
+      url: '/training',
+      templateUrl: 'partials/training.html'
+    })
     .state('lab', {
       url: '/lab',
       templateUrl: 'partials/lab.html'
