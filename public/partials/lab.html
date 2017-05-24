@@ -28,22 +28,22 @@
 
 <hr class="divider">
 
+<h2>All products:</h2>
+
+<div id="products" ng-controller="ProductController as products">
+  <div class="product" ng-repeat='product in products.all_products'>
+    <h3>{{product.name}}</h3>
+    <img ng-init="imgsrc=product.image_url" ng-mouseover="imgsrc=product.alt_image"ng-mouseout="imgsrc=product.image_url" class="product-image" ng-src={{imgsrc}}>
+  </div>
+
+</div>
+
+<hr class="divider">
+
 <div id="lab_slips">
   <h2>Download or print our lab slips below:</h2>
   <div>
     <iframe src="https://docs.google.com/viewer?srcid=0B2L9hk6gvp57eXhZVGEzZlgxVFk&pid=explorer&efh=false&a=v&chrome=false&embedded=true"></iframe>
     <iframe src="https://docs.google.com/viewer?srcid=0B2L9hk6gvp57Z0UxTy1aZ3dzUjg&pid=explorer&efh=false&a=v&chrome=false&embedded=true"></iframe>
   </div>
-</div>
-
-<hr class="divider">
-
-<div ng-controller="ProductController as products">
-
-  <h2>All products:</h2>
-  <div class="product" ng-repeat='product in products.all_products' ng-init="imgsrc=product.image_url" ng-mouseover="imgsrc=product.alt_image" ng-mouseout="imgsrc=product.image_url">
-    <h3>{{product.name}}</h3>
-    <img ng-src={{imgsrc}}>
-  </div>
-
 </div>
