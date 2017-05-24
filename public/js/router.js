@@ -15,9 +15,9 @@ angular.module('properGuide', ['ui.router'])
       url: '/',
       templateUrl: 'partials/home.html'
     })
-    .state('about', {
-      url: '/about',
-      templateUrl: 'partials/about.html'
+    .state('lab', {
+      url: '/lab',
+      templateUrl: 'partials/lab.html'
     })
     .state('contact', {
       url: '/contact',
