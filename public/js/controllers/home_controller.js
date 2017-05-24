@@ -14,5 +14,7 @@ function HomeController($scope, $http, $state, AuthTokenFactory) {
     $state.go('home')
   }
 
+  AuthTokenFactory.setToken();
+
   this.logout = logout;
 }
