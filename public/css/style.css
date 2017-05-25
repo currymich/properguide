@@ -295,7 +295,7 @@ lab page
 }
 
 #cases .gallery-image:nth-of-type(5) {
-  background-image: url("../img/advancedcase2.png");
+  background-image: url("../img/advancedcase2.jpg");
 }
 
 #cases .gallery-image:nth-of-type(6) {
@@ -341,6 +341,7 @@ lab page
   max-width: 20em;
   height: 20em;
   max-height: 20em;
+  overflow: hidden;
   flex: none;
 }
 
