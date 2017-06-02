@@ -1,17 +1,30 @@
 <div ng-controller="OrderItemController as order_items">
 
-  <h3 ui-sref="orders">Go back</h3>
 
+  <h2 ng-hide="home.currentUser">Hello, please sign in below to view orders</h2>
+  <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
-  <h2>Items in order</h2>
-  <div class="product" ng-repeat='order_item in order_items.all_items'>
-    <br>
-    <h3>{{order_item.unit_name}}</h3>
-    <img src="{{order_item.image_url}}">
-    <h4>Price per unit: {{order_item.unit_price | currency}}</h4>
-    <h4>Quantity: {{order_item.quantity}}</h4>
-    <h4>Total Price: {{order_item.total_price}}</h4>
-    <br>
-  </div>
+  <h3 ng-show="home.currentUser"  ui-sref="orders" class="clickable">Go back to orders</h3>
+  <br>
+  <h2 ng-show="home.currentUser">Items in order</h2>
+
+<table ng-show="home.currentUser" class="order_list">
+    <thead>
+      <th></th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <tr class="order" ng-repeat='order_item in order_items.all_items'>
+        <td><img src="{{order_item.image_url}}"></td>
+        <td>{{order_item.unit_name}}</td>
+        <td>{{order_item.unit_price | currency}}</td>
+        <td>{{order_item.quantity}}</td>
+        <td>{{order_item.total_price | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>

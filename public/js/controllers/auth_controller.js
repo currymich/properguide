@@ -7,8 +7,6 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
       .then(function(response) {
         AuthTokenFactory.setToken(response.data.token)
 
-        console.log(response)
-
         $scope.$emit('userLoggedIn', response.data.user);
         $state.go('orders');
       });

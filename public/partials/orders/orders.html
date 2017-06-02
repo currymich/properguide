@@ -2,13 +2,27 @@
 
   <h2>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h2>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
-  <div class="order" ng-repeat='order in orders.all_orders'>
-    <br>
-    <h3>{{order.patient_name}}</h3>
-    <h4>Total: {{order.total | currency}}</h4>
-    <h4>Count: {{order.count}}</h4>
-    <a ng-click="orders.get_order(order)">View Order</a>
-    <br>
-  </div>
+
+  <table ng-show="home.currentUser" class="order_list">
+    <thead>
+      <th>Dentist</th>
+      <th>Patient</th>
+      <th>Items</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"]'>
+        <td>{{order.dentist_name}}</td>
+        <td>{{order.patient_name}}</td>
+        <td>{{order.count}}</td>
+        <td>{{order.total | currency}}</td>
+        <td>{{order.order_status.name}}</td>
+        <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
+        <br>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
