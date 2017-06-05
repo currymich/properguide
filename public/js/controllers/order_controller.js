@@ -4,7 +4,7 @@ function OrderController($http, $state, $scope, $window) {
   var server  = 'https://properguide-api.herokuapp.com';
 
   function get_order(order) {
-    store.setItem('order_id', order.id)
+    store.setItem('active_order', order.id)
     $state.go('order_items', {order_id: order.id})
   }
 

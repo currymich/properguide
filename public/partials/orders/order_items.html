@@ -1,11 +1,19 @@
-<div ng-controller="OrderItemController as order_items">
+<div ng-controller="OrderItemController as order">
 
-  <h2 ng-hide="home.currentUser">Hello, please sign in below to view orders</h2>
+  <h3 ng-hide="home.currentUser">Hello, please sign in below to view orders</h3>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
-  <h3 ng-show="home.currentUser"  ui-sref="orders" class="clickable">Go back to orders</h3>
-  <br>
-  <h2 ng-show="home.currentUser">Items in order</h2>
+  <div ng-show="home.currentUser">
+    <h3 ui-sref="orders" class="clickable">Go back to orders</h3>
+    <br>
+
+    <h4>Dentist: {{order.details.dentist_name}}</h4>
+    <h4>Patient: {{order.details.patient_name}}</h4>
+    <h4>Status: {{order.details.order_status.name}}</h4>
+
+    <br>
+    <h3>Items in order</h3>
+  </div>
 
 <table ng-show="home.currentUser" class="order_list">
     <thead>
@@ -17,29 +25,39 @@
       <th></th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='order_item in order_items.all_items'>
+      <tr class="order" ng-repeat='order_item in order.items | orderBy: "id"'>
         <td><img src="{{order_item.image_url}}"></td>
         <td>{{order_item.unit_name}}</td>
         <td>{{order_item.unit_price | currency}}</td>
         <td>
-          <button type="button" ng-click="order_items.update_quantity(order_item, -1)">-</button>
+          <button type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
           {{order_item.quantity}}
-          <button type="button" ng-click="order_items.update_quantity(order_item, +1)">+</button>
+          <button type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
         </td>
         <td>{{order_item.total_price | currency}}</td>
-        <td><button type="button" ng-click="order_items.delete_order_item(order_item)">X</button></td>
+        <td><button type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Shipping<hr>{{order.details.shipping | currency}}</td>
+        <td>Subtotal<hr>{{order.details.subtotal | currency}}</td>
+        <td>Tax<hr>{{order.details.tax | currency}}</td>
+        <td>Total<hr>{{order.details.total | currency}}</td>
       </tr>
     </tbody>
   </table>
 
+
   <div ng-controller="ProductController as products">
 
-    <form ng-submit="order_items.add_order_item(order_item)" ng-show="home.currentUser">
+    <form id="new_item" ng-submit="order.add_order_item(order_item)" ng-show="home.currentUser">
       <h3>Add New Item</h3>
       <br><br>
 
       <label>Product ID
-        <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products"></select>
+        <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products">
+        </select>
       </label>
 
       <label>Quantity
