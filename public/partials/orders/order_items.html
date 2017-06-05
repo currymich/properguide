@@ -1,6 +1,5 @@
 <div ng-controller="OrderItemController as order_items">
 
-
   <h2 ng-hide="home.currentUser">Hello, please sign in below to view orders</h2>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
@@ -15,16 +14,41 @@
       <th>Price</th>
       <th>Quantity</th>
       <th>Total</th>
+      <th></th>
     </thead>
     <tbody>
       <tr class="order" ng-repeat='order_item in order_items.all_items'>
         <td><img src="{{order_item.image_url}}"></td>
         <td>{{order_item.unit_name}}</td>
         <td>{{order_item.unit_price | currency}}</td>
-        <td>{{order_item.quantity}}</td>
+        <td>
+          <button type="button" ng-click="order_items.update_quantity(order_item, -1)">-</button>
+          {{order_item.quantity}}
+          <button type="button" ng-click="order_items.update_quantity(order_item, +1)">+</button>
+        </td>
         <td>{{order_item.total_price | currency}}</td>
+        <td><button type="button" ng-click="order_items.delete_order_item(order_item)">X</button></td>
       </tr>
     </tbody>
   </table>
+
+  <div ng-controller="ProductController as products">
+
+    <form ng-submit="order_items.add_order_item(order_item)" ng-show="home.currentUser">
+      <h3>Add New Item</h3>
+      <br><br>
+
+      <label>Product ID
+        <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products"></select>
+      </label>
+
+      <label>Quantity
+        <input type="text" name="quantity" ng-model="order_item.quantity" required>
+      </label>
+
+      <button type="submit" name="button">Add Item</button>
+    </form>
+
+  </div>
 
 </div>
