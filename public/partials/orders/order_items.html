@@ -30,12 +30,12 @@
         <td>{{order_item.unit_name}}</td>
         <td>{{order_item.unit_price | currency}}</td>
         <td>
-          <button type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
+          <button ng-if="order.details.order_status.id === 1" type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
           {{order_item.quantity}}
-          <button type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
+          <button ng-if="order.details.order_status.id === 1" type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
         </td>
         <td>{{order_item.total_price | currency}}</td>
-        <td><button type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
+        <td><button ng-if="order.details.order_status.id === 1" type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
       </tr>
       <tr>
         <td></td>
@@ -49,9 +49,9 @@
   </table>
 
 
-  <div ng-controller="ProductController as products">
+  <div ng-controller="ProductController as products" ng-show="home.currentUser">
 
-    <form id="new_item" ng-submit="order.add_order_item(order_item)" ng-show="home.currentUser">
+    <form id="new_item" ng-submit="order.add_order_item(order_item)" ng-if="order.details.order_status.id === 1">
       <h3>Add New Item</h3>
       <br><br>
 
