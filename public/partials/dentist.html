@@ -1,1 +1,26 @@
-dentist page
+<div ng-controller="OrderController as orders">
+
+  <h3>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h3>
+  <a ng-hide="home.currentUser" ui-sref="login">Login</a>
+
+  <table ng-show="home.currentUser" class="order_list">
+    <thead>
+      <th>Patient</th>
+      <th>Items</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr class="order" ng-repeat='order in orders.dentist_orders | orderBy: ["order_status_id", "patient_name"]'>
+        <td>{{order.patient_name}}</td>
+        <td>{{order.count}}</td>
+        <td>{{order.total | currency}}</td>
+        <td>{{order.order_status.name}}</td>
+        <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
+        <br>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
