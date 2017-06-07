@@ -1,5 +1,8 @@
 <div ng-controller="AuthController as auth">
 
+  <h3 ng-hide="home.currentUser">Hello, please sign in below to view orders</h3>
+  <a ng-hide="home.currentUser" ui-sref="login">Login</a>
+
   <form ng-submit="auth.signup(dentist)" ng-show="home.currentUser.admin">
     <label>Name
       <input type="text" ng-model="dentist.name" required>
@@ -34,7 +37,7 @@
     </label>
 
     <label>License Number
-      <input type="text" ng-model="dentist.address" required>
+      <input type="text" ng-model="dentist.license_num" required>
     </label>
 
     <button type="submit" name="button">Signup New Dentist</button>
