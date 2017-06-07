@@ -23,8 +23,14 @@ function OrderController($http, $state, $scope, $window) {
 
   get_orders()
 
-  function new_order(order_params) {
-    $http.post(`${server}/orders`)
+  function new_order(params) {
+    $http.post(`${server}/orders`, {
+      order: {
+        order_status_id: 1,
+        dentist_id: params.dentist.id,
+        patient_name: params.patient_name
+      }
+    })
       .then(function(response) {
         self.all_orders = response.data.orders;
 
