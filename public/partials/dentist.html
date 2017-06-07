@@ -1,6 +1,6 @@
 <div ng-controller="OrderController as orders">
 
-  <h3>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h3>
+  <h3>{{home.currentUser ? 'Orders for ' + home.currentUser.name : 'Hello, please sign in below to view orders'}}</h3>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
   <table ng-show="home.currentUser" class="order_list">
