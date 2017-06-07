@@ -9,24 +9,19 @@ function OrderController($http, $state, $scope, $window) {
   }
 
   function get_orders() {
-    if(home.currentUser.admin) {
-      $http.get(`${server}/orders`)
-      .then(function(response) {
-        self.all_orders = response.data.orders;
+    $http.get(`${server}/orders`)
+    .then(function(response) {
+      self.all_orders = response.data.orders;
 
+      if (response.data.admin) {
         $state.go('orders')
-      });
-    } else {
-      $http.get(`${server}/dentists/${home.currentUser.id}/orders`)
-      .then(function(response) {
-        self.dentist_orders = response.data.orders;
-
-        $state.go('dentist', {dentist_id: response.data.dentist.id})
-      })
-    }
+      } else {
+        $state.go('dentist', {dentist_id: currentUser.id})
+      }
+    })
   }
 
-  get_orders();
+  get_orders()
 
   function new_order(order_params) {
     $http.post(`${server}/orders`)

@@ -12,7 +12,7 @@
       <th></th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='order in orders.dentist_orders | orderBy: ["order_status_id", "patient_name"]'>
+      <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["order_status_id", "patient_name"]'>
         <td>{{order.patient_name}}</td>
         <td>{{order.count}}</td>
         <td>{{order.total | currency}}</td>
