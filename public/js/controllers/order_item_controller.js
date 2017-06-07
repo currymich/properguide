@@ -11,7 +11,6 @@ function OrderItemController($http, $state, $scope, $window) {
   function get_order_items() {
     $http.get(`${server}/orders/${self.active_order}/order_items`)
     .then(function(response) {
-      console.log(response)
       if (response.data.order.order_status_id === 1 && response.data.admin) {
         self.editable = true;
       }
