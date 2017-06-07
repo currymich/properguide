@@ -31,27 +31,14 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
   }
 
   function signup(dentist) {
-    $http.post(`${server}/users`, {dentist})
+    $http.post(`${server}/dentists`, {dentist})
     .then(function(response) {
-
       if (response.data.status == 201) {
         self.flash = ""
-
-        AuthTokenFactory.setToken(response.data.token)
-        $scope.$emit('userLoggedIn', response.data.user)
-
-        if (response.data.user.admin == true) {
-          $state.go('orders');
-        } else {
-          $state.go('dentist', {dentist_id: response.data.user.dentist_id})
-        }
-
+        $state.go('orders');
       } else {
-
         self.flash = "Bad Params"
-
       }
-
     })
   }
 
