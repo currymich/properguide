@@ -12,11 +12,11 @@ function OrderController($http, $state, $scope, $window) {
     $http.get(`${server}/orders`)
     .then(function(response) {
       self.all_orders = response.data.orders;
-
+      self.active_dentist_id = response.data.dentist_id;
       if (response.data.admin) {
         $state.go('orders')
       } else {
-        $state.go('dentist', {dentist_id: currentUser.id})
+        $state.go('dentist', {dentist_id: self.active_dentist_id})
       }
     })
   }
