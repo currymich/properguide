@@ -1,17 +1,19 @@
 <div ng-controller="AuthController as auth">
 
-  <form ng-submit="auth.login(user)">
+  <form ng-submit="auth.login()">
     <label>Username/Email
-      <input type="text" name="email" ng-model="user.email" oninvalid="this.setCustomValidity('Please enter your username or email or click signup below')"
+      <input type="text" name="email" ng-model="auth.email" oninvalid="this.setCustomValidity('Please enter your username or email or click signup below')"
       oninput="setCustomValidity('')" required>
     </label>
 
     <label>Password
-      <input type="password" name="password" ng-model="user.password" oninvalid="this.setCustomValidity('Password cannot be left blank')"
+      <input type="password" name="password" ng-model="auth.password" oninvalid="this.setCustomValidity('Password cannot be left blank')"
       oninput="setCustomValidity('')" required>
     </label>
 
     <button type="submit" name="button">Login</button>
   </form>
+
+  <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
 
 </div>
