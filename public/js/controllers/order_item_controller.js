@@ -2,6 +2,7 @@ function OrderItemController($http, $state, $scope, $window) {
   var self    = this;
   var store = $window.localStorage;
   self.active_order = store.getItem('active_order')
+  self.editable = false;
   var server  = 'https://properguide-api.herokuapp.com';
 
   //on controller load, get the items for the order selected from the list of all orders (see orders partial)
@@ -10,6 +11,10 @@ function OrderItemController($http, $state, $scope, $window) {
   function get_order_items() {
     $http.get(`${server}/orders/${self.active_order}/order_items`)
     .then(function(response) {
+      console.log(response)
+      if (response.data.order.order_status_id === 1 && response.data.admin) {
+        self.editable = true;
+      }
       self.items = response.data.order_items;
     })
     .then(function(){
