@@ -33,11 +33,15 @@ angular.module('properGuide', ['ui.router'])
     })
     .state('orders', {
       url: '/orders',
-      templateUrl: 'partials/orders/orders.html'
+      templateUrl: 'partials/orders/index.html'
     })
     .state('order_items', {
       url: '/orders/:order_id',
       templateUrl: 'partials/orders/order_items.html'
+    })
+    .state('new_order', {
+      url: '/orders/new',
+      templateUrl: 'partials/orders/new.html'
     })
     .state('dentist', {
       url: '/dentist/:dentist_id',
