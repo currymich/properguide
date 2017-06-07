@@ -39,10 +39,6 @@ angular.module('properGuide', ['ui.router'])
       url: '/orders/:order_id',
       templateUrl: 'partials/orders/order_items.html'
     })
-    .state('new_order', {
-      url: '/orders/new',
-      templateUrl: 'partials/orders/new.html'
-    })
     .state('dentist', {
       url: '/dentist/:dentist_id',
       templateUrl: 'partials/dentist/show.html'
