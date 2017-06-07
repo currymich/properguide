@@ -28,7 +28,7 @@ angular.module('properGuide', ['ui.router'])
       templateUrl: 'partials/contact.html'
     })
     .state('login', {
-      url: '/auth/login',
+      url: '/login',
       templateUrl: 'partials/auth/login.html'
     })
     .state('orders', {
@@ -41,7 +41,11 @@ angular.module('properGuide', ['ui.router'])
     })
     .state('dentist', {
       url: '/dentist/:dentist_id',
-      templateUrl: 'partials/dentist.html'
+      templateUrl: 'partials/dentist/show.html'
+    })
+    .state('new_dentist', {
+      url: '/dentist/new',
+      templateUrl: 'partials/dentist/new.html'
     })
 
     $locationProvider.html5Mode(true);
