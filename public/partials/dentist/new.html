@@ -1,0 +1,43 @@
+<div ng-controller="AuthController as auth">
+
+  <form ng-submit="auth.signup(dentist)" ng-show="home.currentUser.admin">
+    <label>Name
+      <input type="text" ng-model="dentist.name" required>
+    </label>
+
+    <label>Email
+      <input type="email" ng-model="dentist.email" required>
+    </label>
+
+    <label>Phone
+      <input type="text" ng-model="dentist.phone" required>
+    </label>
+
+    <label>Office Name
+      <input type="text" ng-model="dentist.office_name" required>
+    </label>
+
+    <label>Office Address
+      <input type="text" ng-model="dentist.address" required>
+    </label>
+
+    <label>Address State
+      <input type="text" ng-model="dentist.address_state" required>
+    </label>
+
+    <label>Address City
+      <input type="text" ng-model="dentist.address_city" required>
+    </label>
+
+    <label>Address Zip
+      <input type="text" ng-model="dentist.address_zip" required>
+    </label>
+
+    <label>License Number
+      <input type="text" ng-model="dentist.address" required>
+    </label>
+
+    <button type="submit" name="button">Signup New Dentist</button>
+  </form>
+
+</div>
