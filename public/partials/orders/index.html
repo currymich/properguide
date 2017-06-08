@@ -25,6 +25,25 @@
     </tbody>
   </table>
 
+  <div ng-controller="DentistController as dentists" ng-show="home.currentUser.admin">
+
+    <form ng-submit="orders.new_order(order)">
+      <label>Dentist
+        <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in dentists.all_dentists | filter : {name: '!admin'}">
+        </select>
+      </label>
+
+      <label>Patient Name
+        <input type="text" ng-model="order.patient_name" required>
+      </label>
+
+      <button type="submit" name="button">Create New Order</button>
+    </form>
+
+  </div>
+
+  <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
+
   <a ui-sref="new_dentist" ng-show="home.currentUser.admin">Create new dentist</a>
 
 </div>
