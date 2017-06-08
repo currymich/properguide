@@ -11,6 +11,7 @@
       <th>Total</th>
       <th>Status</th>
       <th></th>
+      <th>Remove</th>
     </thead>
     <tbody>
       <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"]'>
@@ -20,6 +21,7 @@
         <td>{{order.total | currency}}</td>
         <td>{{order.order_status.name}}</td>
         <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
+        <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
         <br>
       </tr>
     </tbody>
@@ -44,6 +46,6 @@
 
   <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
 
-  <a ui-sref="new_dentist" ng-show="home.currentUser.admin">Create new dentist</a>
+  <h4 ui-sref="new_dentist" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Create new dentist</h4>
 
 </div>

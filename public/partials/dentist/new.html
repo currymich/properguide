@@ -2,6 +2,7 @@
 
   <h3 ng-hide="home.currentUser">Hello, please sign in below to view orders</h3>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
+  <h3 ng-show="home.currentUser" ui-sref="orders" class="clickable">Back to orders</h3>
 
   <form ng-submit="auth.signup(dentist)" ng-show="home.currentUser.admin">
     <label>Name
