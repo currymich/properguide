@@ -3,6 +3,10 @@
   <h3>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h3>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
+  <label ng-show="home.currentUser">Search Orders:
+    <input type="search" ng-model="searchBox">
+  </label>
+
   <table ng-show="home.currentUser" class="order_list">
     <thead>
       <th>Dentist</th>
@@ -14,7 +18,7 @@
       <th>Remove</th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"]'>
+      <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox'>
         <td>{{order.dentist_name}}</td>
         <td>{{order.patient_name}}</td>
         <td>{{order.count}}</td>
