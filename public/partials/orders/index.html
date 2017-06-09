@@ -18,7 +18,7 @@
       <th>Remove</th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='(i, order) in all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox track by $index '>
+      <tr class="order" ng-repeat='order in all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox'>
         <td>{{order.dentist_name}}</td>
         <td>{{order.patient_name}}</td>
         <td>{{order.count}}</td>
