@@ -18,12 +18,13 @@
       <th>Remove</th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox'>
+      <tr class="order" ng-repeat='(i, order) in all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox track by $index '>
         <td>{{order.dentist_name}}</td>
         <td>{{order.patient_name}}</td>
         <td>{{order.count}}</td>
         <td>{{order.total | currency}}</td>
-        <td>{{order.order_status.name}}</td>
+        <td>{{order.order_status.name}}<br><select ng-model="order.order_status" ng-options="status as status.name for status in orders.all_statuses">
+        </select></td>
         <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
         <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
         <br>
