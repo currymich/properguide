@@ -11,7 +11,6 @@
     <thead>
       <th>Dentist</th>
       <th>Patient</th>
-      <th>Items</th>
       <th>Total</th>
       <th>Status</th>
       <th></th>
@@ -21,7 +20,6 @@
       <tr class="order" ng-repeat='order in all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox'>
         <td>{{order.dentist_name}}</td>
         <td>{{order.patient_name}}</td>
-        <td>{{order.count}}</td>
         <td>{{order.total | currency}}</td>
         <td>{{order.order_status.name}}<br><select ng-model="order.order_status" ng-options="status as status.name for status in orders.all_statuses">
         </select></td>
