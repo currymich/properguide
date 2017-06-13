@@ -7,23 +7,34 @@
     <input type="search" ng-model="searchBox">
   </label>
 
+  <div id="orders_to_display" ng-show="home.currentUser.admin">
+    <h4>Orders to display</h4>
+    <div>
+      <label><input type="radio" ng-model="display" value="3"> Orders In Progress</label>
+      <label><input type="radio" ng-model="display" value="4"> Shipped Orders</label>
+      <label><input type="radio" ng-model="display" value="5"> Canceled Orders</label>
+    </div>
+  </div>
+
   <table ng-show="home.currentUser" class="order_list">
     <thead>
       <th>Dentist</th>
       <th>Patient</th>
       <th>Total</th>
-      <th>Status</th>
       <th></th>
+      <th>Due Date</th>
+      <th>Status</th>
       <th>Remove</th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='order in all_orders | orderBy: ["dentist_name", "order_status_id", "patient_name"] | filter: searchBox'>
+      <tr class="order" ng-repeat='order in all_orders | orderBy: ["due_date", "dentist_name"] | filter: hideOrders() | filter: searchBox' ng-style="{'background': (order.due_date | DueDate)}">
         <td>{{order.dentist_name}}</td>
         <td>{{order.patient_name}}</td>
         <td>{{order.total | currency}}</td>
+        <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
+        <td>{{order.due_date | date : format : short}}</td>
         <td>{{order.order_status.name}}<br><select ng-model="order.order_status" ng-options="status as status.name for status in orders.all_statuses">
         </select></td>
-        <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
         <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
         <br>
       </tr>
