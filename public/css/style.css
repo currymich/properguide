@@ -362,6 +362,21 @@ orders page
 
 *********************/
 
+#orders_to_display {
+  width: 80vw;
+  margin: 2em auto 0 auto;
+  padding: 0.25em;
+  border: 1px solid #555;
+  border-radius: 3px;
+}
+
+#orders_to_display div {
+  margin: 0.25em 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
 .order_list, .order_list thead, .order_list tr {
   width: 100%;
 }
