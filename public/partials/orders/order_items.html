@@ -10,6 +10,8 @@
     <h4>Dentist: {{order.details.dentist_name}}</h4>
     <h4>Patient: {{order.details.patient_name}}</h4>
     <h4>Status: {{order.details.order_status.name}}</h4>
+    <h4 ng-show="home.currentUser.admin" ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h4>
+
 
     <br>
     <h3>Items in order</h3>

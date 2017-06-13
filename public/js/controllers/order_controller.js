@@ -52,7 +52,8 @@ function OrderController($http, $state, $scope, $window) {
       order: {
         order_status_id: 1,
         dentist_id: params.dentist.id,
-        patient_name: params.patient_name
+        patient_name: params.patient_name,
+        due_date: params.due_date
       }
     })
       .then(function(response) {
