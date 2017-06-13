@@ -1,6 +1,7 @@
 function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
   var self    = this;
   self.flash = ""
+  $scope.flash = ""
   var server  = 'https://properguide-api.herokuapp.com';
 
   function login() {
@@ -42,6 +43,26 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
     })
   }
 
+  function update(user_id) {
+    if(self.password == self.password2){
+      $http.patch(`${server}/users/${user_id}`, {user: {
+          username: self.username,
+          password: self.password
+        }})
+      .then(function(response) {
+        if (response.data.status == 200) {
+          self.flash = ""
+          document.getElementById('user_update').innerHTML = "Login Details Update Successful"
+        } else {
+          self.flash = "Bad Params"
+        }
+      })
+    } else {
+      self.flash = "Passwords don't match"
+    }
+  }
+
+  this.update = update;
   this.login = login;
   this.signup = signup;
 }
