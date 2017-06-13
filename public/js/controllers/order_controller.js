@@ -64,12 +64,16 @@ function OrderController($http, $state, $scope, $window) {
   }
 
   function delete_order(order) {
-    $http.delete(`${server}/orders/${order.id}`)
-      .then(function(response) {
+    var confirmation = confirm(`Are you sure you want to delete the order for ${order.patient_name}? (This cannot be undone)`);
+   if (confirmation == true) {
+      $http.delete(`${server}/orders/${order.id}`)
+        .then(function(response) {
         $scope.all_orders = response.data.orders;
 
         $state.go('orders')
       })
+    }
+   
   }
 
   function update_status(order_id, order_status_id) {
