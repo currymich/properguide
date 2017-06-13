@@ -52,6 +52,13 @@ form {
   transition: width 0.25s;
 }
 
+form div {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 form label {
   margin: 0.25em 0;
   width: 90%;

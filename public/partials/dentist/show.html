@@ -30,46 +30,50 @@
 
   <div ng-controller="DentistController as dentists">
     <form ng-submit="dentists.update( home.currentUser.dentist_id)" ng-show="home.currentUser" id="dentist_update">
-      <h3>Update Dentist Profile</h3>
-      <br><br>
+      <label>Update Dentist Profile<input type="checkbox" ng-model="dentist_edit"></label>
 
-      <label>Name
-        <input type="text" ng-model="dentists.all_dentists.name" required>
-      </label>
+      <br>
 
-      <label>Email
-        <input type="email" ng-model="dentists.all_dentists.email" required>
-      </label>
+      <div ng-show="dentist_edit">
 
-      <label>Phone
-        <input type="text" ng-model="dentists.all_dentists.phone" required>
-      </label>
+        <label>Name
+          <input type="text" ng-model="dentists.all_dentists.name" required>
+        </label>
 
-      <label>Office Name
-        <input type="text" ng-model="dentists.all_dentists.office_name" required>
-      </label>
+        <label>Email
+          <input type="email" ng-model="dentists.all_dentists.email" required>
+        </label>
 
-      <label>Office Address
-        <input type="text" ng-model="dentists.all_dentists.address" required>
-      </label>
+        <label>Phone
+          <input type="text" ng-model="dentists.all_dentists.phone" required>
+        </label>
 
-      <label>Address State
-        <input type="text" ng-model="dentists.all_dentists.address_state"required>
-      </label>
+        <label>Office Name
+          <input type="text" ng-model="dentists.all_dentists.office_name" required>
+        </label>
 
-      <label>Address City
-        <input type="text" ng-model="dentists.all_dentists.address_city" required>
-      </label>
+        <label>Office Address
+          <input type="text" ng-model="dentists.all_dentists.address" required>
+        </label>
 
-      <label>Address Zip
-        <input type="text" ng-model="dentists.all_dentists.address_zip" required>
-      </label>
+        <label>Address State
+          <input type="text" ng-model="dentists.all_dentists.address_state"required>
+        </label>
 
-      <label>License Number
-        <input type="text" ng-model="dentists.all_dentists.license_num" required>
-      </label>
+        <label>Address City
+          <input type="text" ng-model="dentists.all_dentists.address_city" required>
+        </label>
 
-      <button type="submit" name="button">Edit Profile Details</button>
+        <label>Address Zip
+          <input type="text" ng-model="dentists.all_dentists.address_zip" required>
+        </label>
+
+        <label>License Number
+          <input type="text" ng-model="dentists.all_dentists.license_num" required>
+        </label>
+
+        <button type="submit" name="button">Edit Profile Details</button>
+      </div>
     </form>
 
     <h4 style="color:red; text-align: center">{{flash}}</h4>
@@ -77,22 +81,26 @@
 
   <div ng-controller="AuthController as auth">
     <form ng-submit="auth.update( home.currentUser.id)" ng-show="home.currentUser" id="user_update">
-      <h3>Update Login Details</h3>
-      <br><br>
+      <label>Update Login Details<input type="checkbox" ng-model="user_edit"></label>
+      <br>
 
-      <label>Username
-        <input type="text" ng-init="auth.username = home.currentUser.username" ng-model="auth.username" required>
-      </label>
+      <div ng-show="user_edit">
 
-      <label>New Password
-        <input type="password" ng-model="auth.password" required>
-      </label>
+        <label>Username
+          <input type="text" ng-init="auth.username = home.currentUser.username" ng-model="auth.username" required>
+        </label>
 
-      <label>Confirm Pass
-        <input type="password" ng-model="auth.password2" required>
-      </label>
+        <label>New Password
+          <input type="password" ng-model="auth.password" required>
+        </label>
 
-      <button type="submit" name="button">Edit Profile Details</button>
+        <label>Confirm Pass
+          <input type="password" ng-model="auth.password2" required>
+        </label>
+
+        <button type="submit" name="button">Edit Login Details</button>
+      </div>
+
     </form>
 
     <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
