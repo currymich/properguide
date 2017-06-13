@@ -71,8 +71,31 @@
 
       <button type="submit" name="button">Edit Profile Details</button>
     </form>
+
+    <h4 style="color:red; text-align: center">{{flash}}</h4>
   </div>
 
-  
+  <div ng-controller="AuthController as auth">
+    <form ng-submit="auth.update( home.currentUser.id)" ng-show="home.currentUser" id="user_update">
+      <h3>Update Login Details</h3>
+      <br><br>
+
+      <label>Username
+        <input type="text" ng-init="auth.username = home.currentUser.username" ng-model="auth.username" required>
+      </label>
+
+      <label>New Password
+        <input type="password" ng-model="auth.password" required>
+      </label>
+
+      <label>Confirm Pass
+        <input type="password" ng-model="auth.password2" required>
+      </label>
+
+      <button type="submit" name="button">Edit Profile Details</button>
+    </form>
+
+    <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
+  </div>
 
 </div>
