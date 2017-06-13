@@ -24,6 +24,20 @@ function OrderController($http, $state, $scope, $window) {
 
   get_orders();
 
+  $scope.display = '3';
+
+  $scope.hideOrders = function(){
+    return function(order){
+      if($scope.display == 3){
+        return order['order_status_id'] <= 3;
+      } else if ($scope.display == 4) {
+        return order['order_status_id'] == 4;
+      } else {
+        return order['order_status_id'] == 5;
+      }
+    }
+  }
+
   function get_statuses() {
     $http.get(`${server}/orders/statuses`)
     .then(function(response) {
@@ -69,12 +83,12 @@ function OrderController($http, $state, $scope, $window) {
   $scope.$watch('all_orders', function(newValue, oldValue, scope) {
     var newStatus = [], oldStatus = []
     if(newValue && oldValue){
-      newValue.forEach(function(order,index){
-        newStatus[index] = order.order_status
+      newValue.forEach(function(order){
+        newStatus[order.id] = order.order_status
       })
-      oldValue.forEach(function(order,index){
-        if(newStatus[index].name != order.order_status.name) {
-          update_status(order.id, newStatus[index].id)
+      oldValue.forEach(function(order){
+        if(newStatus[order.id].name != order.order_status.name) {
+          update_status(order.id, newStatus[order.id].id)
         }
       })
     }
