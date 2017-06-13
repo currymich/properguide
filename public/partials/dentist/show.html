@@ -27,4 +27,52 @@
     </tbody>
   </table>
 
+
+  <div ng-controller="DentistController as dentists">
+    <form ng-submit="dentists.update( home.currentUser.dentist_id)" ng-show="home.currentUser" id="dentist_update">
+      <h3>Update Dentist Profile</h3>
+      <br><br>
+
+      <label>Name
+        <input type="text" ng-model="dentists.all_dentists.name" required>
+      </label>
+
+      <label>Email
+        <input type="email" ng-model="dentists.all_dentists.email" required>
+      </label>
+
+      <label>Phone
+        <input type="text" ng-model="dentists.all_dentists.phone" required>
+      </label>
+
+      <label>Office Name
+        <input type="text" ng-model="dentists.all_dentists.office_name" required>
+      </label>
+
+      <label>Office Address
+        <input type="text" ng-model="dentists.all_dentists.address" required>
+      </label>
+
+      <label>Address State
+        <input type="text" ng-model="dentists.all_dentists.address_state"required>
+      </label>
+
+      <label>Address City
+        <input type="text" ng-model="dentists.all_dentists.address_city" required>
+      </label>
+
+      <label>Address Zip
+        <input type="text" ng-model="dentists.all_dentists.address_zip" required>
+      </label>
+
+      <label>License Number
+        <input type="text" ng-model="dentists.all_dentists.license_num" required>
+      </label>
+
+      <button type="submit" name="button">Edit Profile Details</button>
+    </form>
+  </div>
+
+  
+
 </div>
