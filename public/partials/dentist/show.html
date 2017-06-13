@@ -16,7 +16,7 @@
       <th></th>
     </thead>
     <tbody>
-      <tr class="order" ng-repeat='order in orders.all_orders | orderBy: ["order_status_id", "patient_name"] | filter: searchBox'>
+      <tr class="order" ng-repeat='order in all_orders | orderBy: ["created_at"] | filter: searchBox'>
         <td>{{order.patient_name}}</td>
         <td>{{order.count}}</td>
         <td>{{order.total | currency}}</td>
