@@ -30,7 +30,8 @@
 
   <div ng-controller="DentistController as dentists">
     <form ng-submit="dentists.update( home.currentUser.dentist_id)" ng-show="home.currentUser" id="dentist_update">
-      <label>Update Dentist Profile<input type="checkbox" ng-model="dentist_edit"></label>
+      <h4>Dentist Details</h4>
+      <button type="button" ng-click="dentist_edit=true" ng-hide="dentist_edit">Update Details</button>
 
       <br>
 
@@ -76,7 +77,7 @@
           <textarea rows="8" cols="36" ng-model="dentists.all_dentists.notes"></textarea>
         </label>
 
-        <button type="submit" name="button">Edit Profile Details</button>
+        <button type="submit" name="button">Update Details</button>
       </div>
     </form>
 
@@ -85,7 +86,8 @@
 
   <div ng-controller="AuthController as auth">
     <form ng-submit="auth.update( home.currentUser.id)" ng-show="home.currentUser" id="user_update">
-      <label>Update Login Details<input type="checkbox" ng-model="user_edit"></label>
+      <h4>Login Details</h4>
+        <button type="button" ng-click="user_edit=true" ng-hide="user_edit">Update Details</button>
       <br>
 
       <div ng-show="user_edit">
@@ -98,7 +100,7 @@
           <input type="password" ng-model="auth.password2" required>
         </label>
 
-        <button type="submit" name="button">Edit Login Details</button>
+        <button type="submit" name="button">Update Details</button>
       </div>
 
     </form>
