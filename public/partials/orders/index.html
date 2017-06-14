@@ -33,8 +33,7 @@
         <td>{{order.total | currency}}</td>
         <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
         <td>{{order.due_date | date : format : short}}</td>
-        <td>{{order.order_status.name}}<br><select ng-model="order.order_status" ng-options="status as status.name for status in orders.all_statuses">
-        </select></td>
+        <td>{{order.order_status.name}}</td>
         <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
         <br>
       </tr>
@@ -55,6 +54,10 @@
 
       <label>Due Date
         <input type="date" ng-model="order.due_date" required>
+      </label>
+
+      <label>Instructions
+        <textarea rows="8" cols="36" ng-model="order.instructions"></textarea>
       </label>
 
       <button type="submit" name="button">Create New Order</button>
