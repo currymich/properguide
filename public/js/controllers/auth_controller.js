@@ -46,7 +46,6 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
   function update(user_id) {
     if(self.password == self.password2){
       $http.patch(`${server}/users/${user_id}`, {user: {
-          username: self.username,
           password: self.password
         }})
       .then(function(response) {
