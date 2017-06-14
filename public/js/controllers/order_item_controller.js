@@ -25,6 +25,7 @@ function OrderItemController($http, $state, $scope, $window) {
     $http.get(`${server}/orders/${self.active_order}`)
     .then(function(response) {
       self.details = response.data.order;
+      self.dentist = response.data.dentist;
     })
   }
 
@@ -77,10 +78,34 @@ function OrderItemController($http, $state, $scope, $window) {
     })
   }
 
+  function get_statuses() {
+    $http.get(`${server}/orders/statuses`)
+    .then(function(response) {
+      self.all_statuses = response.data.statuses;
+    })
+  }
+
+  get_statuses()
+
+  function update_order(id){
+    $http.patch(`${server}/orders/${id}`, {
+      order: {
+        due_date: self.new_due_date,
+        order_status_id: self.new_status.id
+      }
+    })
+    .then(function(response){
+      self.details = response.data.order;
+
+      $state.go('order_items', {order_id: id})
+    })
+  }
 
   this.get_order_items = get_order_items;
   this.get_order_details = get_order_details;
   this.add_order_item = add_order_item;
   this.update_quantity = update_quantity;
+  this.get_statuses = get_statuses;
+  this.update_order = update_order;
   this.delete_order_item = delete_order_item;
 }

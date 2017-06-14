@@ -38,22 +38,14 @@ function OrderController($http, $state, $scope, $window) {
     }
   }
 
-  function get_statuses() {
-    $http.get(`${server}/orders/statuses`)
-    .then(function(response) {
-      self.all_statuses = response.data.statuses;
-    })
-  }
-
-  get_statuses()
-
   function new_order(params) {
     $http.post(`${server}/orders`, {
       order: {
         order_status_id: 1,
         dentist_id: params.dentist.id,
         patient_name: params.patient_name,
-        due_date: params.due_date
+        due_date: params.due_date,
+        instructions: params.instructions
       }
     })
       .then(function(response) {
@@ -73,34 +65,9 @@ function OrderController($http, $state, $scope, $window) {
         $state.go('orders')
       })
     }
-   
+
   }
 
-  function update_status(order_id, order_status_id) {
-    $http.patch(`${server}/orders/${order_id}`, {order:{order_status_id}})
-    .then(function(response) {
-      $scope.all_orders = response.data.orders;
-
-      $state.go('orders')
-    })
-  }
-
-  $scope.$watch('all_orders', function(newValue, oldValue, scope) {
-    var newStatus = [], oldStatus = []
-    if(newValue && oldValue){
-      newValue.forEach(function(order){
-        newStatus[order.id] = order.order_status
-      })
-      oldValue.forEach(function(order){
-        if(newStatus[order.id].name != order.order_status.name) {
-          update_status(order.id, newStatus[order.id].id)
-        }
-      })
-    }
-  }, true)
-
-  this.get_statuses = get_statuses;
-  this.update_status = update_status;
   this.get_order = get_order;
   this.get_orders = get_orders;
   this.new_order = new_order;
