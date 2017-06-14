@@ -4,7 +4,6 @@ function HomeController($scope, $http, $state, AuthTokenFactory) {
   $scope.$on('userLoggedIn', function(event, data) {
     self.currentUser = data;
     $scope.$broadcast('newLogin', self.currentUser)
-    console.log(data.name, 'logged in')
   });
 
   function logout() {
