@@ -1,4 +1,4 @@
-function OrderItemController($http, $state, $scope, $window) {
+function OrderItemController($http, $state, $scope, $window, $filter) {
   var self    = this;
   var store = $window.localStorage;
   self.active_order = store.getItem('active_order')
@@ -88,10 +88,14 @@ function OrderItemController($http, $state, $scope, $window) {
   get_statuses()
 
   function update_order(id){
+    //if new due date isnt chosen, used old one
+    self.new_due_date = self.new_due_date ? self.new_due_date : new Date(self.details.due_date)
+
+    self.new_status = self.new_status ? self.new_status.id : self.details.order_status_id
     $http.patch(`${server}/orders/${id}`, {
       order: {
         due_date: self.new_due_date,
-        order_status_id: self.new_status.id
+        order_status_id: self.new_status
       }
     })
     .then(function(response){

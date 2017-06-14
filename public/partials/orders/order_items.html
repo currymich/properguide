@@ -104,11 +104,10 @@
     <div ng-show="order_edit">
 
       <label>New Due Date
-        <input type="date" ng-model="order.new_due_date" required>
+        <input type="date" ng-model="order.new_due_date">
       </label>
 
       <label>New Status
-        {{order.order_status.name}}<br>
         <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
         </select>
       </label>
