@@ -7,11 +7,36 @@
     <h3 ui-sref="orders" class="clickable">Go back to orders</h3>
     <br>
 
-    <h4>Dentist: {{order.details.dentist_name}}</h4>
-    <h4>Patient: {{order.details.patient_name}}</h4>
-    <h4>Status: {{order.details.order_status.name}}</h4>
-    <h4 ng-show="home.currentUser.admin" ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h4>
+    <p>Dentist: {{order.details.dentist_name}}
+      <br>Patient: {{order.details.patient_name}}
+    </p>
 
+    <div ng-show="home.currentUser.admin">
+
+      <p>Dentist Notes:
+        <br>{{order.dentist.notes}}
+      </p>
+
+      <p>Office Name:
+        <br>{{order.dentist.office_name}}
+      </p>
+
+      <p>Office Address:
+        <br>{{order.dentist.address}}
+        <br>{{order.dentist.address_city}}, {{order.dentist.address_state}} {{order.dentist.address_zip}}
+      </p>
+
+      <br>
+
+      <h4> Status: {{order.details.order_status.name}}</h4>
+      <h4 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h4>
+
+    </div>
+
+    <br>
+    <h4>Instructions:
+      <br>{{order.details.instructions}}
+    </h4>
 
     <br>
     <h3>Items in order</h3>
@@ -70,6 +95,30 @@
     </form>
 
   </div>
+
+  <form ng-submit="order.update_order(order.details.id)" ng-show="home.currentUser.admin" id="order_update">
+    <h4>Order Details</h4>
+      <button type="button" ng-click="order_edit=true" ng-hide="order_edit">Update Details</button>
+    <br>
+
+    <div ng-show="order_edit">
+
+      <label>New Due Date
+        <input type="date" ng-model="order.new_due_date" required>
+      </label>
+
+      <label>New Status
+        {{order.order_status.name}}<br>
+        <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
+        </select>
+      </label>
+
+      <button type="submit" name="button">Update Details</button>
+    </div>
+
+  </form>
+
+  <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
 
   <div ng-show="home.currentUser">
     <br><br>
