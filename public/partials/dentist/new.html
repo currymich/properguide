@@ -41,6 +41,10 @@
       <input type="text" ng-model="dentist.license_num">
     </label>
 
+    <label>Tax Percent*
+      <input type="text" ng-model="dentist.tax_rate">
+    </label>
+
     <label>Notes
       <textarea rows="8" cols="36" ng-model="dentist.notes"></textarea>
     </label>
@@ -51,3 +55,5 @@
   <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
 
 </div>
+
+<a ng-show="home.currentUser.admin" target="_blank" href="https://taxcloud.net/#Find-a-Rate">* Find tax rate</a>
