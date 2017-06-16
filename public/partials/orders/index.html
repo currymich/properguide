@@ -43,6 +43,9 @@
   <div ng-controller="DentistController as dentists" ng-show="home.currentUser.admin">
 
     <form ng-submit="orders.new_order(order)">
+      <h4>Create order for existing dentist</h4>
+      <br>
+      
       <label>Dentist
         <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in dentists.all_dentists | filter : {name: '!admin'}">
         </select>
