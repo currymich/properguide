@@ -5,19 +5,21 @@ function DueDate() {
     //# of days between due date and now
     var days_remaining =  Math.floor(( Date.parse(input) - Date.now() ) / 86400000);
 
-    var out = "";
+    var highlight_color = "";
 
-    if (days_remaining < 2) {
-      out = '#f99';
+    if (days_remaining < 0) {
+      highlight_color = '#cff';
+    } else if (days_remaining < 2) {
+      highlight_color = '#f99';
     } else if (days_remaining <= 4) {
-      out = '#fc9';
+      highlight_color = '#fc9';
     } else if (days_remaining <= 7){
-      out = '#ffc';
+      highlight_color = '#ffc';
     } else {
-      out = 'white'
+      highlight_color = 'white'
     }
 
-    return out;
+    return highlight_color;
   }
 
 };
