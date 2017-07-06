@@ -1,8 +1,12 @@
 function OrderItemController($http, $state, $scope, $window, $filter) {
-  var self    = this;
+  var self = this;
+
   var store = $window.localStorage;
+
   self.active_order = store.getItem('active_order')
+
   self.editable = false;
+
   var server  = 'https://properguide-api.herokuapp.com';
 
   //on controller load, get the items for the order selected from the list of all orders (see orders partial)
@@ -105,6 +109,31 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     })
   }
 
+  $http.get(`${server}/braintree/client_token`)
+  .then(function(response) {
+    self.token = response.data.token
+  })
+  .then(function(){
+    braintree.dropin.create({
+      authorization: self.token,
+      container: '#dropin-container'
+      }, function (createErr, instance) {
+          self.instance = instance
+        });
+  });
+
+
+  function checkout() {
+    self.instance.requestPaymentMethod(function (err, payload) {
+      $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
+      .then(function(response){
+        console.log(response.data.message, response.data.order);
+      })
+    })
+
+  }
+
+  this.checkout = checkout;
   this.get_order_items = get_order_items;
   this.get_order_details = get_order_details;
   this.add_order_item = add_order_item;
