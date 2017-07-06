@@ -75,8 +75,12 @@
     </tbody>
   </table>
 
-  <div ng-if="home.currentUser" id="dropin-container"></div>
-  <button ng-click="order.checkout()">Use Card</button>
+  <div id="cc_payment" ng-if="home.currentUser">
+    <div id="dropin-container"></div>
+    <label>Click button only once to charge selected card
+      <button ng-click="order.checkout()">UseThis Card</button>
+    </label>
+  </div>
 
   <div ng-controller="ProductController as products" ng-show="home.currentUser">
 

@@ -109,7 +109,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     })
   }
 
-  $http.get(`${server}/braintree/client_token`)
+  $http.post(`${server}/braintree/client_token`, {order_id: self.active_order})
   .then(function(response) {
     self.token = response.data.token
   })
@@ -127,7 +127,11 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     self.instance.requestPaymentMethod(function (err, payload) {
       $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
       .then(function(response){
-        console.log(response.data.message, response.data.order);
+        if(response.data.status == 202){
+          document.getElementById("cc_payment").innerHTML = "Payment Successful!";
+
+          $http.post(`${server}/payments`,{payment:{order_id: self.active_order, amount: response.data.payment, description: payload.description}})
+        }
       })
     })
 
