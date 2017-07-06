@@ -128,9 +128,20 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
       .then(function(response){
         if(response.data.status == 202){
-          document.getElementById("cc_payment").innerHTML = `${response.data.message} on ${payload.description}`;
+          self.paid_amount = response.data.payment
 
-          $http.post(`${server}/payments`,{payment:{order_id: self.active_order, amount: response.data.payment, description: payload.description}})
+          $http.post(`${server}/payments`,{
+            payment: {
+              amount: response.data.payment,
+              description: payload.description
+            }, order_id: self.active_order})
+            .then(function(response){
+              if(response.data.status == 201){
+                document.getElementById("cc_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful on card ${response.data.payment.description}</p>`;
+              } else {
+                document.getElementById("cc_payment").innerHTML = `<p>Payment failed, please refresh and try again</p>`;
+              }
+            })
         }
       })
     })
