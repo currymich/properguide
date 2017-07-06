@@ -128,7 +128,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
       .then(function(response){
         if(response.data.status == 202){
-          document.getElementById("cc_payment").innerHTML = "Payment Successful!";
+          document.getElementById("cc_payment").innerHTML = `${response.data.message} on ${payload.description}`;
 
           $http.post(`${server}/payments`,{payment:{order_id: self.active_order, amount: response.data.payment, description: payload.description}})
         }
