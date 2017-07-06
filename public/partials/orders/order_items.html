@@ -75,6 +75,8 @@
     </tbody>
   </table>
 
+  <div ng-if="home.currentUser" id="dropin-container"></div>
+  <button ng-click="order.checkout()">Use Card</button>
 
   <div ng-controller="ProductController as products" ng-show="home.currentUser">
 
