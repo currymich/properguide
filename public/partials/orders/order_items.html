@@ -70,12 +70,12 @@
         <td>Tax<hr>{{order.details.tax | currency}}</td>
         <td>Total Cost<hr>{{order.details.total | currency}}</td>
         <td>Pay Recieved<hr>{{order.pay_received | currency}}</td>
-        <td>Balance<hr>{{self.amouamount_due | currency}}</td>
+        <td>Balance<hr>{{order.amount_due | currency}}</td>
       </tr>
     </tbody>
   </table>
 
-  <div id="cc_payment" ng-if="home.currentUser">
+  <div id="cc_payment" ng-show="accept_payments">
     <div id="dropin-container"></div>
     <label>
       <button ng-click="order.checkout()">Use This Card</button>
