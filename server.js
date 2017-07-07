@@ -1,8 +1,10 @@
 // REQUIREMENTS
 var express     = require('express');
 var logger      = require('morgan');
-var path = require('path')
-var history = require('connect-history-api-fallback');
+var path        = require('path')
+var history     = require('connect-history-api-fallback');
+var sslRedirect = require('heroku-ssl-redirect');
+
 var app         = express();
 var port        = process.env.PORT || 4000;
 
@@ -13,13 +15,7 @@ app.all('/*', function(req, res, next) {
     res.sendFile('public/index.html', { root: __dirname });
 });
 app.use(history());
-
-app.use((req, res, next) => {
-    if (req.header['x-forwarded-proto'] !== 'https')
-      res.redirect(status, 'https://' + req.hostname + req.originalUrl);
-    else
-      next()
-  })
+app.use(sslRedirect());
 
 // LISTENERS
 app.listen(port, function() {
