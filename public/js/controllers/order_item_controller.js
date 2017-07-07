@@ -6,6 +6,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
   self.active_order = store.getItem('active_order')
 
   self.editable = false;
+  $scope.accept_payments = false;
 
   var server  = 'https://properguide-api.herokuapp.com';
 
@@ -32,6 +33,16 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       self.dentist = response.data.dentist;
       update_balance(response.data.payments)
     })
+  }
+
+  function update_balance(payments) {
+    self.pay_received = payments.reduce(function(sum, payment){
+      return sum + parseFloat(payment.amount);
+    }, 0)
+    self.amount_due = self.details.total - self.pay_received;
+    if (self.amount_due && self.amount_due > 0){
+      $scope.accept_payments = true;
+    }
   }
 
   function add_order_item(params) {
@@ -122,14 +133,6 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
           self.instance = instance
         });
   });
-
-  function update_balance(payments) {
-    self.pay_received = payments.reduce(function(sum, payment){
-      return sum + payment.value;
-    }, 0)
-    self.amount_due = self.details.total - self.pay_received;
-  }
-
 
   function checkout() {
     //generate nonce with payment info and selected card
