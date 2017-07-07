@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.all('/*', function(req, res, next) {
     res.sendFile('public/index.html', { root: __dirname });
 });
-app.use(history());
+// app.use(history());
 app.use(sslRedirect());
 
 // LISTENERS
