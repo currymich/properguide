@@ -65,12 +65,12 @@
         <td><button ng-if="order.editable" type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
         <td>Shipping<hr>{{order.details.shipping | currency}}</td>
         <td>Subtotal<hr>{{order.details.subtotal | currency}}</td>
         <td>Tax<hr>{{order.details.tax | currency}}</td>
-        <td>Total<hr>{{order.details.total | currency}}</td>
+        <td>Total Cost<hr>{{order.details.total | currency}}</td>
+        <td>Pay Recieved<hr>{{order.pay_received | currency}}</td>
+        <td>Balance<hr>{{self.amouamount_due | currency}}</td>
       </tr>
     </tbody>
   </table>

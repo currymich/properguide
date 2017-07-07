@@ -30,6 +30,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     .then(function(response) {
       self.details = response.data.order;
       self.dentist = response.data.dentist;
+      update_balance(response.data.payments)
     })
   }
 
@@ -122,32 +123,49 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
         });
   });
 
+  function update_balance(payments) {
+    self.pay_received = payments.reduce(function(sum, payment){
+      return sum + payment.value;
+    }, 0)
+    self.amount_due = self.details.total - self.pay_received;
+  }
+
 
   function checkout() {
+    //generate nonce with payment info and selected card
     self.instance.requestPaymentMethod(function (err, payload) {
-      $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
-      .then(function(response){
-        if(response.data.status == 202){
-          self.paid_amount = response.data.payment
-
-          $http.post(`${server}/payments`,{
-            payment: {
-              amount: response.data.payment,
-              description: payload.description
-            }, order_id: self.active_order})
+      //double check user wants to use the selected card (once button clicked, card is charged)
+      var confirmation = confirm(`Confirm: Pay full balance for this order using card ${payload.description}`);
+      if (confirmation == true) {
+        //use nonce to charge card for given amount (full price of order)
+        $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
+        .then(function(response){
+          if(response.data.status == 202){
+            //If charge successful, save payment info to server (payment amount and description of card used - last two digits, generated with nonce payload)
+            $http.post(`${server}/payments`,{
+              payment: {
+                amount: response.data.payment,
+                description: payload.description
+              },
+              order_id: self.active_order
+            })
             .then(function(response){
+              update_balance(response.data.payments)
               if(response.data.status == 201){
                 document.getElementById("cc_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful on card ${response.data.payment.description}</p>`;
               } else {
-                document.getElementById("cc_payment").innerHTML = `<p>Payment failed, please refresh and try again</p>`;
+                document.getElementById("cc_payment").innerHTML = `<p>Payment succeeded but failed to save, account balance may not reflect true amount due</p>`;
               }
             })
-        }
-      })
+          }
+        })
+      }
     })
-
   }
 
+
+
+  this.update_balance = update_balance;
   this.checkout = checkout;
   this.get_order_items = get_order_items;
   this.get_order_details = get_order_details;
