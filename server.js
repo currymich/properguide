@@ -15,8 +15,8 @@ app.all('/*', function(req, res, next) {
 app.use(history());
 
 app.use((req, res, next) => {
-    if (req.header 'x-forwarded-proto' !== 'https')
-      res.redirect(`https://${req.header('host')}${req.url}`)
+    if (req.header['x-forwarded-proto'] !== 'https')
+      res.redirect(status, 'https://' + req.hostname + req.originalUrl);
     else
       next()
   })
