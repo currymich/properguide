@@ -14,6 +14,13 @@ app.all('/*', function(req, res, next) {
 });
 app.use(history());
 
+app.use((req, res, next) => {
+    if (req.header 'x-forwarded-proto' !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+      next()
+  })
+
 // LISTENERS
 app.listen(port, function() {
   console.log("Server Initialized");
