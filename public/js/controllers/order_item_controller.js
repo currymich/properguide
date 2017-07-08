@@ -160,6 +160,9 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
                 document.getElementById("cc_payment").innerHTML = `<p>Payment succeeded but failed to save, account balance may not reflect true amount due</p>`;
               }
             })
+          } else {
+            console.log(response.data.error);
+            document.getElementById("cc_payment").innerHTML = `<p>Payment failed to process, please refresh and try with a different card</p>`;
           }
         })
       }
