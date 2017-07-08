@@ -164,7 +164,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
               }
             })
           } else {
-            console.log(response.data.error);
+            console.log({error: response.data.error, params: response.data.sale_params})
             document.getElementById("cc_payment").innerHTML = `<p>Payment failed to process, please refresh and try with a different card</p>`;
           }
         })
