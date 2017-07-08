@@ -138,6 +138,9 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     //generate nonce with payment info and selected card
     self.instance.requestPaymentMethod(function (err, payload) {
       //double check user wants to use the selected card (once button clicked, card is charged)
+      if (err) {
+        console.log(err);
+      }
       var confirmation = confirm(`Confirm: Pay full balance for this order using card ${payload.description}`);
       if (confirmation == true) {
         //use nonce to charge card for given amount (full price of order)
