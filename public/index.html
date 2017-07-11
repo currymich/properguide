@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ProperGuide Implant Lab</title>
+    <title>ProperGuide Lab</title>
+    <link rel="icon" href="img/favicon.png">
     <base href="/">
     <!-- styles -->
-    <!-- <link rel="stylesheet" href="css/materialize.css"> -->
+    <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <link rel="shortcut icon" href="img/favicon.png">
     <!-- angular -->
     <script src="js/external/angular.js"></script>
     <!-- ui-router -->
@@ -37,13 +37,15 @@
     <script type="text/javascript" src="js/app.js"></script>
   </head>
   <body ng-controller="HomeController as home">
-    <header>
-      <h1 ui-sref="home">ProperGuide</h1>
+    <header class="nav-wrapper light-blue lighten-2">
+      <a ui-sref="home" class="brand-logo left"><img src="img/logo-white.png" alt="properguide logo"></a>
       <nav>
-        <a ui-sref="home">Home</a>
-        <a ui-sref="training">Training</a>
-        <a ui-sref="lab">Lab</a>
-        <a ui-sref="contact">Contact</a>
+        <ul id="nav-mobile" class="right">
+          <li><a ui-sref="home">Home</a></li>
+          <li><a ui-sref="training">Training</a></li>
+          <li><a ui-sref="lab">Lab</a></li>
+          <li><a ui-sref="contact">Contact</a></li>
+        </ul>
       </nav>
     </header>
 
@@ -52,10 +54,9 @@
       </ui-view>
     </main>
 
-    <footer>
-      <p>Copyright (c) 2017 ProperGuide Corp, All Rights Reserved.</p>
-      <br>
+    <footer class="page-footer">
       <nav>
+        <p class="center">Copyright (c) 2017 ProperGuide Corp, All Rights Reserved.</p>
         <a ng-hide="home.currentUser" ui-sref="login">Login</a>
         <a ng-show="home.currentUser" ui-sref="orders">Orders</a>
         <a ng-show="home.currentUser" ng-click="home.logout()" href="#">Logout</a>
