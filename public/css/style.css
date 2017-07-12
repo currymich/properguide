@@ -9,14 +9,6 @@ Site wide stylings
   margin: 0;
 }
 
-
-body {
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
-  color: #444;
-  min-width: 15em;
-}
-
 main {
   flex: 1;
   width: 85%;
