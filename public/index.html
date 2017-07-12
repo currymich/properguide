@@ -54,13 +54,12 @@
     </main>
 
     <footer>
-      <p>Copyright (c) 2017 ProperGuide Corp, All Rights Reserved.</p>
-      <br>
       <nav>
         <a ng-hide="home.currentUser" ui-sref="login">Login</a>
         <a ng-show="home.currentUser" ui-sref="orders">Orders</a>
         <a ng-show="home.currentUser" ng-click="home.logout()" href="#">Logout</a>
       </nav>
+      <p>Copyright (c) 2017 ProperGuide Corp, All Rights Reserved.</p>
     </footer>
   </body>
 </html>
