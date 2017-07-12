@@ -134,15 +134,17 @@ footer {
   width: 100%;
   background: deepskyblue;
   color: #fff;
-  height: 2.5em;
+  height: 5em;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
 
 footer p, footer a {
   font-size: 0.75em;
+  margin: 0;
+  padding: 0.5em;
 }
 
 /**********************
