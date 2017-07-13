@@ -9,12 +9,13 @@ var port        = process.env.PORT || 4000;
 // MIDDLEWARE
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('*',function(req,res){
-  if(req.protocol==='http'){
+app.all('*', function(req,res, next){
+  console.log(req);
+  if(req.protocol==='http' && req.headers.host !=="localhost:4000"){
     res.redirect('https://'+req.headers.host+req.url)
   }
-})
-app.all('/*', function(req, res, next) {
+  next()
+}, function(req, res, next) {
     res.sendFile('public/index.html', { root: __dirname });
 });
 app.use(history());
