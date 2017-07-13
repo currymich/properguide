@@ -94,11 +94,12 @@
     </table>
   </div>
 
-  <div ng-controller="ProductController as products" ng-show="home.currentUser">
 
-    <form id="new_item" ng-submit="order.add_order_item(order_item)" ng-if="order.editable">
-      <h3>Add New Item</h3>
-      <br><br>
+  <div ng-controller="ProductController as products" ng-if="order.editable">
+
+    <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Add item to order</h5>
+
+    <form id="new_item" ng-show="new_item" ng-submit="order.add_order_item(order_item)" >
 
       <label>Product ID
         <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products">
@@ -114,32 +115,39 @@
 
   </div>
 
-  <form ng-submit="order.update_order(order.details.id)" ng-show="home.currentUser.admin" id="order_update">
-    <h4>Order Details</h4>
-      <button type="button" ng-click="order_edit=true" ng-hide="order_edit">Update Details</button>
-    <br>
+  <div ng-show="home.currentUser.admin">
+    <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
 
-    <div ng-show="order_edit">
+    <form ng-submit="order.update_order(order.details.id)"  id="order_update" ng-show="order_edit">
+        <label>New Due Date
+          <input type="date" ng-model="order.new_due_date">
+        </label>
 
-      <label>New Due Date
-        <input type="date" ng-model="order.new_due_date">
-      </label>
+        <label>New Status
+          <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
+          </select>
+        </label>
 
-      <label>New Status
-        <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
-        </select>
-      </label>
+        <button type="submit" name="button">Update Details</button>
+    </form>
 
-      <button type="submit" name="button">Update Details</button>
+    <h5 style="color:red; text-align: center">{{auth.flash}}</h5>
+  </div>
+
+  <div id="cc_payment" ng-show="accept_payments">
+    <hr class="divider">
+
+    <div id="dropin-container"></div>
+
+    <div>
+      <button ng-click="order.checkout()" class="button-primary">Use This Card</button>
+      <p style="text-align:center;">Click button only once to charge selected card</p>
     </div>
-
-  </form>
-
-  <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
+  </div>
 
   <div ng-show="home.currentUser">
     <br><br>
-    <h4 style="text-align:center">To request a change to one of your orders, please contact us at properguideimplant@gmail.com</h4>
+    <h6 style="text-align:center">To request a change to one of your orders, please contact us at properguideimplant@gmail.com</h6>
   </div>
 
 </div>
