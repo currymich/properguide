@@ -1,6 +1,6 @@
 <div ng-controller="OrderController as orders">
 
-  <h3>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h3>
+  <h5>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h5>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
   <label ng-show="home.currentUser">Search Orders:
@@ -8,7 +8,7 @@
   </label>
 
   <div id="orders_to_display" ng-show="home.currentUser.admin">
-    <h4>Orders to display</h4>
+    <h5>Orders to display</h5>
     <div>
       <label><input type="radio" ng-model="display" value="3"> Orders In Progress</label>
       <label><input type="radio" ng-model="display" value="4"> Shipped Orders</label>
@@ -18,13 +18,15 @@
 
   <table ng-show="home.currentUser" class="order_list">
     <thead>
-      <th>Dentist</th>
-      <th>Patient</th>
-      <th>Total</th>
-      <th></th>
-      <th>Due Date</th>
-      <th>Status</th>
-      <th>Remove</th>
+      <tr>
+        <th>Dentist</th>
+        <th>Patient</th>
+        <th>Total</th>
+        <th></th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Remove</th>
+      </tr>
     </thead>
     <tbody>
       <tr class="order" ng-repeat='order in all_orders | orderBy: ["due_date", "dentist_name"] | filter: hideOrders() | filter: searchBox' ng-style="{'background': (order.due_date | DueDate)}">
@@ -42,10 +44,10 @@
 
   <div ng-controller="DentistController as dentists" ng-show="home.currentUser.admin">
 
-    <form ng-submit="orders.new_order(order)">
-      <h4>Create order for existing dentist</h4>
+    <h5 style="text-align:center" ng-click="new_order=true">Create Order</h5>
+    <form ng-show="new_order" ng-submit="orders.new_order(order)">
       <br>
-      
+
       <label>Dentist
         <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in dentists.all_dentists | filter : {name: '!admin'}">
         </select>
@@ -68,8 +70,61 @@
 
   </div>
 
-  <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
+  <h5 ng-click="new_dentist=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Create new dentist</h5>
 
-  <h4 ui-sref="new_dentist" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Create new dentist</h4>
+  <div ng-show="new_dentist" ng-controller="AuthController as auth">
+
+    <form ng-submit="auth.signup(dentist)" ng-show="home.currentUser.admin">
+      <label>Name
+        <input type="text" ng-model="dentist.name" required>
+      </label>
+
+      <label>Email
+        <input type="email" ng-model="dentist.email" required>
+      </label>
+
+      <label>Phone
+        <input type="text" ng-model="dentist.phone">
+      </label>
+
+      <label>Office Name
+        <input type="text" ng-model="dentist.office_name">
+      </label>
+
+      <label>Office Address
+        <input type="text" ng-model="dentist.address" required>
+      </label>
+
+      <label>Address State
+        <input type="text" ng-model="dentist.address_state" required>
+      </label>
+
+      <label>Address City
+        <input type="text" ng-model="dentist.address_city" required>
+      </label>
+
+      <label>Address Zip
+        <input type="text" ng-model="dentist.address_zip" required>
+      </label>
+
+      <label>License Number
+        <input type="text" ng-model="dentist.license_num">
+      </label>
+
+      <label>Tax Percent*
+        <input type="text" ng-model="dentist.tax_rate">
+      </label>
+
+      <label>Notes
+        <textarea rows="8" cols="36" ng-model="dentist.notes"></textarea>
+      </label>
+
+      <button type="submit" name="button">Signup New Dentist</button>
+    </form>
+
+    <h6 style="color:red; text-align: center">{{auth.flash}}</h6>
+
+    <a ng-show="home.currentUser.admin" target="_blank" href="https://taxcloud.net/#Find-a-Rate">* Find tax rate</a>
+  </div>
 
 </div>
