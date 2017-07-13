@@ -71,7 +71,6 @@ form input[type="checkbox"] {
 
 form button {
   margin: 1.5em 0;
-  padding: 1em 2em;
   border-radius: 3px;
   background: #eee;
   transition: background 0.065s;
