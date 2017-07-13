@@ -27,11 +27,11 @@
 
 <hr class="divider">
 
-<h2>All products:</h2>
+<h5>All products:</h5>
 
 <div id="products" ng-controller="ProductController as products">
   <div class="product" ng-repeat='product in products.all_products'>
-    <h3>{{product.name}}</h3>
+    <h6>{{product.name}}</h6>
 
     <img ng-init="imgsrc=product.image_url" ng-mouseover="imgsrc=product.alt_image"ng-mouseout="imgsrc=product.image_url" ng-src={{imgsrc}}>
   </div>
@@ -41,7 +41,7 @@
 <hr class="divider">
 
 <div id="lab_slips">
-  <h2>Download or print our lab slips below:</h2>
+  <h5>Download or print our lab slips below:</h5>
   <div>
     <iframe src="https://docs.google.com/viewer?srcid=0B2L9hk6gvp57TVRVNmNKNW1yUVk&pid=explorer&efh=false&a=v&chrome=false&embedded=true"></iframe>
     <iframe src="https://docs.google.com/viewer?srcid=0B2L9hk6gvp57em83RU5rTWN5OTg&pid=explorer&efh=false&a=v&chrome=false&embedded=true"></iframe>
