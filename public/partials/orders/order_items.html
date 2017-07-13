@@ -39,48 +39,59 @@
     </h4>
 
     <br>
-    <h3>Items in order</h3>
   </div>
 
-<table ng-show="home.currentUser" class="order_list">
-    <thead>
-      <th></th>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <tr class="order" ng-repeat='order_item in order.items | orderBy: "id"'>
-        <td><img src="{{order_item.image_url}}"></td>
-        <td>{{order_item.unit_name}}</td>
-        <td>{{order_item.unit_price | currency}}</td>
-        <td>
-          <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
-          {{order_item.quantity}}
-          <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
-        </td>
-        <td>{{order_item.total_price | currency}}</td>
-        <td><button ng-if="order.editable" type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
-      </tr>
-      <tr>
-        <td>Shipping<hr>{{order.details.shipping | currency}}</td>
-        <td>Subtotal<hr>{{order.details.subtotal | currency}}</td>
-        <td>Tax<hr>{{order.details.tax | currency}}</td>
-        <td>Total Cost<hr>{{order.details.total | currency}}</td>
-        <td>Pay Recieved<hr>{{order.pay_received | currency}}</td>
-        <td>Balance<hr>{{order.amount_due | currency}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div ng-show="home.currentUser">
+    <hr class="divider">
+    <h5>Items in order</h5>
 
-  <div id="cc_payment" ng-show="accept_payments">
-    <div id="dropin-container"></div>
-    <label>
-      <button ng-click="order.checkout()">Use This Card</button>
-      Click button only once to charge selected card
-    </label>
+    <table class="order_list">
+      <thead>
+        <th></th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr class="order" ng-repeat='order_item in order.items | orderBy: "id"'>
+          <td><img src="{{order_item.image_url}}"></td>
+          <td>{{order_item.unit_name}}</td>
+          <td>{{order_item.unit_price | currency}}</td>
+          <td>
+            <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
+            {{order_item.quantity}}
+            <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
+          </td>
+          <td>{{order_item.total_price | currency}}</td>
+          <td><button ng-if="order.editable" type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <td>Shipping</td>
+          <td>Subtotal</td>
+          <td>Tax</td>
+          <td>Total Cost</td>
+          <td>Pay Recieved</td>
+          <td>Balance</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{order.details.shipping | currency}}</td>
+          <td>{{order.details.subtotal | currency}}</td>
+          <td>{{order.details.tax | currency}}</td>
+          <td>{{order.details.total | currency}}</td>
+          <td>{{order.pay_received | currency}}</td>
+          <td>{{order.amount_due | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div ng-controller="ProductController as products" ng-show="home.currentUser">

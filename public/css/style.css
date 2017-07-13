@@ -381,35 +381,35 @@ orders page
   justify-content: space-around;
 }
 
-.order_list, .order_list thead, .order_list tr {
+table, table thead, table tr {
   width: 100%;
 }
 
-.order_list thead, .order_list tr {
+table thead, table tr {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.order_list td, .order_list th {
+table td, table th {
   flex: 1;
   text-align: center;
 }
 
-.order_list thead {
+table thead {
   margin: 0.25em 0;
 }
 
-.order_list tr {
+table tr {
   padding: 0.25em 0;
   border: 1px solid #eee;
 }
 
-.order_list td {
+table td {
   border-right: 1px solid #eee;
 }
 
-.order_list img {
+table img {
   height: auto;
   width: 7.5em;
 }
