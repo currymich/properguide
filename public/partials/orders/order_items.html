@@ -1,15 +1,15 @@
 <div ng-controller="OrderItemController as order">
 
-  <h3 ng-hide="home.currentUser">Hello, please sign in below to view orders</h3>
+  <h5 ng-hide="home.currentUser">Hello, please sign in below to view orders</h5>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
   <div ng-show="home.currentUser">
-    <h3 ui-sref="orders" class="clickable">Go back to orders</h3>
+    <h5 ui-sref="orders" class="clickable">Go back to orders</h5>
     <br>
 
-    <p>Dentist: {{order.details.dentist_name}}
+    <h5>Dentist: {{order.details.dentist_name}}
       <br>Patient: {{order.details.patient_name}}
-    </p>
+    </h5>
 
     <div ng-show="home.currentUser.admin">
 
@@ -28,15 +28,15 @@
 
       <br>
 
-      <h4> Status: {{order.details.order_status.name}}</h4>
-      <h4 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h4>
+      <h5> Status: {{order.details.order_status.name}}</h5>
+      <h5 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h5>
 
     </div>
 
     <br>
-    <h4>Instructions:
+    <h6>Instructions:
       <br>{{order.details.instructions}}
-    </h4>
+    </h6>
 
     <br>
   </div>
