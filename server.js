@@ -11,7 +11,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('*',function(req,res){
   if(req.protocol==='http'){
-    console.log(req);
     res.redirect('https://'+req.headers.host+req.url)
   }
 })
