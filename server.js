@@ -9,7 +9,7 @@ var port        = process.env.PORT || 4000;
 // MIDDLEWARE
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/login', function (req, res, next) {
+app.use(function (req, res, next) {
   if (req.get("x-forwarded-proto") !== "https" &&
     process.env.NODE_ENV === "production") {
     res.redirect(301, `https://www.properguideimplant.com${req.url}`);
@@ -20,10 +20,7 @@ app.use('/login', function (req, res, next) {
   res.sendFile('public/index.html', {root: __dirname});
 });
 
-
-
 app.use(history());
-
 
 // LISTENERS
 app.listen(port, function() {
