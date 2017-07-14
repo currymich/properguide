@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 function enforceHttps(req, res, next) {
   if (req.get("x-forwarded-proto") !== "https" &&
-    process.env.NODE_ENV === "production" {
+    process.env.NODE_ENV === "production") {
     res.redirect(301, `https://www.properguideimplant.com${req.url}`);
   } else {
     next();
