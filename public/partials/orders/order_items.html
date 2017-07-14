@@ -3,6 +3,7 @@
   <h5 ng-hide="home.currentUser">Hello, please sign in below to view orders</h5>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
+  <!-- Details for specific order with some extra details show if user is admin -->
   <div ng-show="home.currentUser">
     <h5 ui-sref="orders" class="clickable">Go back to orders</h5>
     <br>
@@ -41,6 +42,7 @@
     <br>
   </div>
 
+  <!-- Table showing details for all items in the active order -->
   <div ng-show="home.currentUser">
     <hr class="divider">
     <h5>Items in order</h5>
@@ -94,7 +96,7 @@
     </table>
   </div>
 
-
+  <!-- Form to add a new item to this order, only visible if user is admin and order is in-progress or 'received' -->
   <div ng-controller="ProductController as products" ng-if="order.editable">
 
     <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Add item to order</h5>
@@ -115,6 +117,7 @@
 
   </div>
 
+  <!-- Form to update due date and status of order -->
   <div ng-show="home.currentUser.admin">
     <h5 ng-click="order_edit=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
 
@@ -134,6 +137,7 @@
     <h5 style="color:red; text-align: center">{{auth.flash}}</h5>
   </div>
 
+  <!-- Form to submit a CC payment -->
   <div id="cc_payment" ng-show="accept_payments">
     <hr class="divider">
 

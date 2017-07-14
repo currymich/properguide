@@ -3,10 +3,12 @@
   <h5>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h5>
   <a ng-hide="home.currentUser" ui-sref="login">Login</a>
 
+  <!-- Filter orders by what is typed in search box, works for any parameter - ie patient name, doctor -->
   <label ng-show="home.currentUser">Search Orders:
     <input type="search" ng-model="searchBox">
   </label>
 
+  <!-- Filter orders by order status -->
   <div id="orders_to_display" ng-show="home.currentUser.admin">
     <h5>Orders to display</h5>
     <div>
@@ -16,6 +18,7 @@
     </div>
   </div>
 
+  <!-- Table showing details for all orders -->
   <table ng-show="home.currentUser" class="order_list">
     <thead>
       <tr>
@@ -42,6 +45,7 @@
     </tbody>
   </table>
 
+  <!-- Form to create a new order for an existing dentist -->
   <div ng-controller="DentistController as dentists" ng-show="home.currentUser.admin">
 
     <h5 style="text-align:center" ng-click="new_order=true" class="clickable">Create Order</h5>
@@ -70,11 +74,12 @@
 
   </div>
 
-  <h5 ng-click="new_dentist=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Create new dentist</h5>
+  <!-- Form to enroll a new dentist -->
+  <div ng-show="home.currentUser.admin"  ng-controller="AuthController as auth">
 
-  <div ng-show="new_dentist" ng-controller="AuthController as auth">
+    <h5 ng-click="new_dentist=true" style="text-align:center" class="clickable">Create new dentist</h5>
 
-    <form ng-submit="auth.signup(dentist)" ng-show="home.currentUser.admin">
+    <form ng-submit="auth.signup(dentist)" ng-show="new_dentist">
       <label>Name
         <input type="text" ng-model="dentist.name" required>
       </label>
