@@ -9,15 +9,18 @@ var port        = process.env.PORT || 4000;
 // MIDDLEWARE
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/*', function(req,res, next){
-  console.log(req.protocol);
-  // if(req.protocol != 'https'){
-  //   res.redirect('https://www.properguideimplant.com'+req.path)
-  // }
-  // else {
-  //   res.sendFile('public/index.html', { root: __dirname });
-  // }
-});
+function enforceHttps(req, res, next) {
+  if (!req.secure &&
+    req.get("x-forwarded-proto") !== "https" &&
+    process.env.NODE_ENV === "production") {
+    res.redirect(301, `https://www.properguideimplant.com/${req.url}`);
+  } else {
+    next();
+  }
+}
+
+app.use(enforceHttps);
+
 app.use(history());
 
 
