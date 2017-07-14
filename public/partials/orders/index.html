@@ -1,135 +1,137 @@
 <div ng-controller="OrderController as orders">
 
-  <h5>{{home.currentUser ? 'All Orders' : 'Hello, please sign in below to view orders'}}</h5>
-  <a ng-hide="home.currentUser" ui-sref="login">Login</a>
+  <div ng-show="currentUser.admin">
 
-  <!-- Filter orders by what is typed in search box, works for any parameter - ie patient name, doctor -->
-  <label ng-show="home.currentUser">Search Orders:
-    <input type="search" ng-model="searchBox">
-  </label>
+    <h5>All Orders</h5>
 
-  <!-- Filter orders by order status -->
-  <div id="orders_to_display" ng-show="home.currentUser.admin">
-    <h5>Orders to display</h5>
-    <div>
-      <label><input type="radio" ng-model="display" value="3"> Orders In Progress</label>
-      <label><input type="radio" ng-model="display" value="4"> Shipped Orders</label>
-      <label><input type="radio" ng-model="display" value="5"> Canceled Orders</label>
+    <!-- Filter orders by what is typed in search box, works for any parameter - ie patient name, doctor -->
+    <label>Search Orders:
+      <input type="search" ng-model="searchBox"></label>
+
+    <!-- Filter orders by order status -->
+    <div id="orders_to_display">
+      <h5>Orders to display</h5>
+      <div>
+        <label><input type="radio" ng-model="display" value="3"> Orders In Progress</label>
+        <label><input type="radio" ng-model="display" value="4"> Shipped Orders</label>
+        <label><input type="radio" ng-model="display" value="5"> Canceled Orders</label>
+      </div>
     </div>
-  </div>
 
-  <!-- Table showing details for all orders -->
-  <table ng-show="home.currentUser" class="order_list">
-    <thead>
-      <tr>
-        <th>Dentist</th>
-        <th>Patient</th>
-        <th>Total</th>
-        <th></th>
-        <th>Due Date</th>
-        <th>Status</th>
-        <th>Remove</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="order" ng-repeat='order in all_orders | orderBy: ["due_date", "dentist_name"] | filter: hideOrders() | filter: searchBox' ng-style="{'background': (order.due_date | DueDate)}">
-        <td>{{order.dentist_name}}</td>
-        <td>{{order.patient_name}}</td>
-        <td>{{order.total | currency}}</td>
-        <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
-        <td>{{order.due_date | date : format : short}}</td>
-        <td>{{order.order_status.name}}</td>
-        <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
+    <!-- Table showing details for all orders -->
+    <table class="order_list">
+      <thead>
+        <tr>
+          <th>Dentist</th>
+          <th>Patient</th>
+          <th>Total</th>
+          <th></th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="order" ng-repeat='order in all_orders | orderBy: ["due_date", "dentist_name"] | filter: hideOrders() | filter: searchBox' ng-style="{'background': (order.due_date | DueDate)}">
+          <td>{{order.dentist_name}}</td>
+          <td>{{order.patient_name}}</td>
+          <td>{{order.total | currency}}</td>
+          <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
+          <td>{{order.due_date | date : format : short}}</td>
+          <td>{{order.order_status.name}}</td>
+          <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
+          <br>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Form to create a new order for an existing dentist -->
+    <div ng-controller="DentistController as dentists">
+
+      <h5 style="text-align:center" ng-click="new_order=true" class="clickable">Create Order</h5>
+      <form ng-show="new_order" ng-submit="orders.new_order(order)">
         <br>
-      </tr>
-    </tbody>
-  </table>
 
-  <!-- Form to create a new order for an existing dentist -->
-  <div ng-controller="DentistController as dentists" ng-show="home.currentUser.admin">
+        <label>Dentist
+          <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in dentists.all_dentists | filter : {name: '!admin'}">
+          </select>
+        </label>
 
-    <h5 style="text-align:center" ng-click="new_order=true" class="clickable">Create Order</h5>
-    <form ng-show="new_order" ng-submit="orders.new_order(order)">
-      <br>
+        <label>Patient Name
+          <input type="text" ng-model="order.patient_name" required>
+        </label>
 
-      <label>Dentist
-        <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in dentists.all_dentists | filter : {name: '!admin'}">
-        </select>
-      </label>
+        <label>Due Date
+          <input type="date" ng-model="order.due_date" required>
+        </label>
 
-      <label>Patient Name
-        <input type="text" ng-model="order.patient_name" required>
-      </label>
+        <label>Instructions
+          <textarea rows="8" cols="36" ng-model="order.instructions"></textarea>
+        </label>
 
-      <label>Due Date
-        <input type="date" ng-model="order.due_date" required>
-      </label>
+        <button type="submit" name="button">Create New Order</button>
+      </form>
 
-      <label>Instructions
-        <textarea rows="8" cols="36" ng-model="order.instructions"></textarea>
-      </label>
+    </div>
 
-      <button type="submit" name="button">Create New Order</button>
-    </form>
+    <!-- Form to enroll a new dentist -->
+    <div ng-controller="AuthController as auth">
 
-  </div>
+      <h5 ng-click="new_dentist=true" style="text-align:center" class="clickable">Create new dentist</h5>
 
-  <!-- Form to enroll a new dentist -->
-  <div ng-show="home.currentUser.admin"  ng-controller="AuthController as auth">
+      <form ng-submit="auth.signup(dentist)" ng-show="new_dentist">
+        <label>Name
+          <input type="text" ng-model="dentist.name" required>
+        </label>
 
-    <h5 ng-click="new_dentist=true" style="text-align:center" class="clickable">Create new dentist</h5>
+        <label>Email
+          <input type="email" ng-model="dentist.email" required>
+        </label>
 
-    <form ng-submit="auth.signup(dentist)" ng-show="new_dentist">
-      <label>Name
-        <input type="text" ng-model="dentist.name" required>
-      </label>
+        <label>Phone
+          <input type="text" ng-model="dentist.phone">
+        </label>
 
-      <label>Email
-        <input type="email" ng-model="dentist.email" required>
-      </label>
+        <label>Office Name
+          <input type="text" ng-model="dentist.office_name">
+        </label>
 
-      <label>Phone
-        <input type="text" ng-model="dentist.phone">
-      </label>
+        <label>Office Address
+          <input type="text" ng-model="dentist.address" required>
+        </label>
 
-      <label>Office Name
-        <input type="text" ng-model="dentist.office_name">
-      </label>
+        <label>Address State
+          <input type="text" ng-model="dentist.address_state" required>
+        </label>
 
-      <label>Office Address
-        <input type="text" ng-model="dentist.address" required>
-      </label>
+        <label>Address City
+          <input type="text" ng-model="dentist.address_city" required>
+        </label>
 
-      <label>Address State
-        <input type="text" ng-model="dentist.address_state" required>
-      </label>
+        <label>Address Zip
+          <input type="text" ng-model="dentist.address_zip" required>
+        </label>
 
-      <label>Address City
-        <input type="text" ng-model="dentist.address_city" required>
-      </label>
+        <label>License Number
+          <input type="text" ng-model="dentist.license_num">
+        </label>
 
-      <label>Address Zip
-        <input type="text" ng-model="dentist.address_zip" required>
-      </label>
+        <label>Tax Percent*
+          <input type="text" ng-model="dentist.tax_rate">
+        </label>
 
-      <label>License Number
-        <input type="text" ng-model="dentist.license_num">
-      </label>
+        <label>Notes
+          <textarea rows="8" cols="36" ng-model="dentist.notes"></textarea>
+        </label>
 
-      <label>Tax Percent*
-        <input type="text" ng-model="dentist.tax_rate">
-      </label>
+        <button type="submit" name="button">Signup New Dentist</button>
+      </form>
 
-      <label>Notes
-        <textarea rows="8" cols="36" ng-model="dentist.notes"></textarea>
-      </label>
+      <h6 style="color:red; text-align: center">{{auth.flash}}</h6>
 
-      <button type="submit" name="button">Signup New Dentist</button>
-    </form>
+      <a ng-show="home.currentUser.admin" target="_blank" href="https://taxcloud.net/#Find-a-Rate">* Find tax rate</a>
+    </div>
 
-    <h6 style="color:red; text-align: center">{{auth.flash}}</h6>
-
-    <a ng-show="home.currentUser.admin" target="_blank" href="https://taxcloud.net/#Find-a-Rate">* Find tax rate</a>
   </div>
 
 </div>

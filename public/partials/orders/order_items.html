@@ -1,157 +1,158 @@
 <div ng-controller="OrderItemController as order">
 
-  <h5 ng-hide="home.currentUser">Hello, please sign in below to view orders</h5>
-  <a ng-hide="home.currentUser" ui-sref="login">Login</a>
+  <div ng-show="currentUser">
 
-  <!-- Details for specific order with some extra details show if user is admin -->
-  <div ng-show="home.currentUser">
-    <h5 ui-sref="orders" class="clickable">Go back to orders</h5>
-    <br>
-
-    <h5>Dentist: {{order.details.dentist_name}}
-      <br>Patient: {{order.details.patient_name}}
-    </h5>
-
-    <div ng-show="home.currentUser.admin">
-
-      <p>Dentist Notes:
-        <br>{{order.dentist.notes}}
-      </p>
-
-      <p>Office Name:
-        <br>{{order.dentist.office_name}}
-      </p>
-
-      <p>Office Address:
-        <br>{{order.dentist.address}}
-        <br>{{order.dentist.address_city}}, {{order.dentist.address_state}} {{order.dentist.address_zip}}
-      </p>
-
+    <!-- Details for specific order with some extra details show if user is admin -->
+    <div>
+      <h5 ui-sref="orders" class="clickable">Go back to orders</h5>
       <br>
 
-      <h5> Status: {{order.details.order_status.name}}</h5>
-      <h5 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h5>
+      <h5>Dentist: {{order.details.dentist_name}}
+        <br>Patient: {{order.details.patient_name}}
+      </h5>
 
+      <div ng-show="home.currentUser.admin">
+
+        <p>Dentist Notes:
+          <br>{{order.dentist.notes}}
+        </p>
+
+        <p>Office Name:
+          <br>{{order.dentist.office_name}}
+        </p>
+
+        <p>Office Address:
+          <br>{{order.dentist.address}}
+          <br>{{order.dentist.address_city}}, {{order.dentist.address_state}} {{order.dentist.address_zip}}
+        </p>
+
+        <br>
+
+        <h5> Status: {{order.details.order_status.name}}</h5>
+        <h5 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h5>
+
+      </div>
+
+      <br>
+      <h6>Instructions:
+        <br>{{order.details.instructions}}
+      </h6>
+
+      <br>
     </div>
 
-    <br>
-    <h6>Instructions:
-      <br>{{order.details.instructions}}
-    </h6>
+    <!-- Table showing details for all items in the active order -->
+    <div>
+      <hr class="divider">
+      <h5>Items in order</h5>
 
-    <br>
-  </div>
+      <table class="order_list">
+        <thead>
+          <th></th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr class="order" ng-repeat='order_item in order.items | orderBy: "id"'>
+            <td><img src="{{order_item.image_url}}"></td>
+            <td>{{order_item.unit_name}}</td>
+            <td>{{order_item.unit_price | currency}}</td>
+            <td>
+              <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
+              {{order_item.quantity}}
+              <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
+            </td>
+            <td>{{order_item.total_price | currency}}</td>
+            <td><button ng-if="order.editable" type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
+          </tr>
+        </tbody>
+      </table>
 
-  <!-- Table showing details for all items in the active order -->
-  <div ng-show="home.currentUser">
-    <hr class="divider">
-    <h5>Items in order</h5>
+      <table>
+        <thead>
+          <tr>
+            <td>Shipping</td>
+            <td>Subtotal</td>
+            <td>Tax</td>
+            <td>Total Cost</td>
+            <td>Pay Recieved</td>
+            <td>Balance</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{order.details.shipping | currency}}</td>
+            <td>{{order.details.subtotal | currency}}</td>
+            <td>{{order.details.tax | currency}}</td>
+            <td>{{order.details.total | currency}}</td>
+            <td>{{order.pay_received | currency}}</td>
+            <td>{{order.amount_due | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <table class="order_list">
-      <thead>
-        <th></th>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <tr class="order" ng-repeat='order_item in order.items | orderBy: "id"'>
-          <td><img src="{{order_item.image_url}}"></td>
-          <td>{{order_item.unit_name}}</td>
-          <td>{{order_item.unit_price | currency}}</td>
-          <td>
-            <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, -1)">-</button>
-            {{order_item.quantity}}
-            <button ng-if="order.editable" type="button" ng-click="order.update_quantity(order_item, +1)">+</button>
-          </td>
-          <td>{{order_item.total_price | currency}}</td>
-          <td><button ng-if="order.editable" type="button" ng-click="order.delete_order_item(order_item)">X</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Form to add a new item to this order, only visible if user is admin and order is in-progress or 'received' -->
+    <div ng-controller="ProductController as products" ng-if="order.editable">
 
-    <table>
-      <thead>
-        <tr>
-          <td>Shipping</td>
-          <td>Subtotal</td>
-          <td>Tax</td>
-          <td>Total Cost</td>
-          <td>Pay Recieved</td>
-          <td>Balance</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{order.details.shipping | currency}}</td>
-          <td>{{order.details.subtotal | currency}}</td>
-          <td>{{order.details.tax | currency}}</td>
-          <td>{{order.details.total | currency}}</td>
-          <td>{{order.pay_received | currency}}</td>
-          <td>{{order.amount_due | currency}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Add item to order</h5>
 
-  <!-- Form to add a new item to this order, only visible if user is admin and order is in-progress or 'received' -->
-  <div ng-controller="ProductController as products" ng-if="order.editable">
+      <form id="new_item" ng-show="new_item" ng-submit="order.add_order_item(order_item)" >
 
-    <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Add item to order</h5>
-
-    <form id="new_item" ng-show="new_item" ng-submit="order.add_order_item(order_item)" >
-
-      <label>Product Name
-        <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products">
-        </select>
-      </label>
-
-      <label>Quantity
-        <input type="text" name="quantity" ng-model="order_item.quantity" required>
-      </label>
-
-      <button type="submit" name="button">Add Item</button>
-    </form>
-
-  </div>
-
-  <!-- Form to update due date and status of order -->
-  <div ng-show="home.currentUser.admin">
-    <h5 ng-click="order_edit=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
-
-    <form ng-submit="order.update_order(order.details.id)"  id="order_update" ng-show="order_edit">
-        <label>New Due Date
-          <input type="date" ng-model="order.new_due_date">
-        </label>
-
-        <label>New Status
-          <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
+        <label>Product Name
+          <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products">
           </select>
         </label>
 
-        <button type="submit" name="button">Update Details</button>
-    </form>
+        <label>Quantity
+          <input type="text" name="quantity" ng-model="order_item.quantity" required>
+        </label>
 
-    <h5 style="color:red; text-align: center">{{auth.flash}}</h5>
-  </div>
+        <button type="submit" name="button">Add Item</button>
+      </form>
 
-  <!-- Form to submit a CC payment -->
-  <div id="cc_payment" ng-show="accept_payments">
-    <hr class="divider">
-
-    <div id="dropin-container"></div>
-
-    <div id="submit_payment">
-      <button ng-click="order.checkout()" class="button-primary">Use This Card</button>
-      <p style="text-align:center;">Click button only once to charge selected card</p>
     </div>
-  </div>
 
-  <div ng-show="home.currentUser">
-    <br><br>
-    <h6 style="text-align:center">To request a change to one of your orders, please contact us at properguideimplant@gmail.com</h6>
+    <!-- Form to update due date and status of order -->
+    <div ng-show="currentUser.admin">
+      <h5 ng-click="order_edit=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
+
+      <form ng-submit="order.update_order(order.details.id)"  id="order_update" ng-show="order_edit">
+          <label>New Due Date
+            <input type="date" ng-model="order.new_due_date">
+          </label>
+
+          <label>New Status
+            <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
+            </select>
+          </label>
+
+          <button type="submit" name="button">Update Details</button>
+      </form>
+
+      <h5 style="color:red; text-align: center">{{auth.flash}}</h5>
+    </div>
+
+    <!-- Form to submit a CC payment -->
+    <div id="cc_payment" ng-show="accept_payments">
+      <hr class="divider">
+
+      <div id="dropin-container"></div>
+
+      <div id="submit_payment">
+        <button ng-click="order.checkout()" class="button-primary">Use This Card</button>
+        <p style="text-align:center;">Click button only once to charge selected card</p>
+      </div>
+    </div>
+
+    <div>
+      <br><br>
+      <h6 style="text-align:center">To request a change to one of your orders, please contact us at properguideimplant@gmail.com</h6>
+    </div>
+
   </div>
 
 </div>
