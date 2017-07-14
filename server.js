@@ -10,7 +10,7 @@ var port        = process.env.PORT || 4000;
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/*', function(req,res, next){
-  if(!req.secure){
+  if(req.protocol !== 'https'){
     res.redirect('https://www.properguideimplant.com'+req.url)
   }
   res.sendFile('public/index.html', { root: __dirname });
