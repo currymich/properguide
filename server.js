@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/*', function(req,res, next){
   if(req.protocol != 'https'){
-    res.redirect('https://www.properguideimplant.com'+req.url)
+    res.redirect('https://www.properguideimplant.com'+req.path)
   }
   // else {
   //   res.sendFile('public/index.html', { root: __dirname });
