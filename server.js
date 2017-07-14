@@ -10,6 +10,7 @@ var port        = process.env.PORT || 4000;
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.all('/*', function(req,res, next){
+  console.log(req);
   if(req.protocol==='http' && req.headers.host != "localhost:4000"){
     res.redirect('https://'+req.headers.host+req.url)
   }
