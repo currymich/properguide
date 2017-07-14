@@ -3,6 +3,10 @@ function OrderController($http, $state, $scope, $window) {
   var store = $window.localStorage;
   var server  = 'https://properguide-api.herokuapp.com';
 
+  if(!$scope.currentUser){
+    window.location.href = 'https://www.properguideimplant.com/login'
+  }
+
   //Used by "view order" button on order index page - loads the id into local storage for use by order_item controler, then loads that controller by sending to a page with that controller attached
   function get_order(order) {
     store.setItem('active_order', order.id)

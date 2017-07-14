@@ -3,6 +3,7 @@ function HomeController($scope, $http, $state, AuthTokenFactory) {
 
   $scope.$on('userLoggedIn', function(event, data) {
     self.currentUser = data;
+    $scope.currentUser = data;
     $scope.$broadcast('newLogin', self.currentUser)
   });
 

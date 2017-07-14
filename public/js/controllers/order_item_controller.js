@@ -10,6 +10,10 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
 
   var server  = 'https://properguide-api.herokuapp.com';
 
+  if(!$scope.currentUser){
+    window.location.href = 'https://www.properguideimplant.com/login'
+  }
+
   //on controller load, get the items for the order selected from the list of all orders (see orders partial)
   get_order_items();
 
