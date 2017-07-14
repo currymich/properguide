@@ -28,14 +28,10 @@
   </table>
 
 
-  <div ng-controller="DentistController as dentists">
-    <form ng-submit="dentists.update( home.currentUser.dentist_id)" ng-show="home.currentUser" id="dentist_update">
-      <h4>Dentist Details</h4>
-      <button type="button" ng-click="dentist_edit=true" ng-hide="dentist_edit">Update Details</button>
+  <div ng-controller="DentistController as dentists" ng-show="home.currentUser">
 
-      <br>
-
-      <div ng-show="dentist_edit">
+    <h5 ng-click="edit_acct=true" style="text-align:center" class="clickable">Edit Account</h5>
+    <form ng-submit="dentists.update( home.currentUser.dentist_id)"  id="dentist_update" ng-show="edit_acct">
 
         <label>Name
           <input type="text" ng-model="dentists.all_dentists.name" required>
@@ -78,19 +74,15 @@
         </label>
 
         <button type="submit" name="button">Update Details</button>
-      </div>
     </form>
 
-    <h4 style="color:red; text-align: center">{{flash}}</h4>
+    <h5 style="color:red; text-align: center">{{flash}}</h5>
   </div>
 
-  <div ng-controller="AuthController as auth">
-    <form ng-submit="auth.update( home.currentUser.id)" ng-show="home.currentUser" id="user_update">
-      <h4>Login Details</h4>
-        <button type="button" ng-click="user_edit=true" ng-hide="user_edit">Update Details</button>
-      <br>
+  <div ng-controller="AuthController as auth" ng-show="home.currentUser">
 
-      <div ng-show="user_edit">
+    <h5 ng-click="new_pass=true" style="text-align:center" class="clickable">New Password</h5>
+    <form ng-submit="auth.update( home.currentUser.id)"  id="user_update" ng-show="new_pass">
 
         <label>New Password
           <input type="password" ng-model="auth.password" required>
@@ -100,12 +92,11 @@
           <input type="password" ng-model="auth.password2" required>
         </label>
 
-        <button type="submit" name="button">Update Details</button>
-      </div>
+        <button type="submit" name="button">Update Pass</button>
 
     </form>
 
-    <h4 style="color:red; text-align: center">{{auth.flash}}</h4>
+    <h5 style="color:red; text-align: center">{{auth.flash}}</h5>
   </div>
 
 </div>
