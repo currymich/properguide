@@ -471,23 +471,14 @@ Order Show page
   }
 
   #lab_slips iframe {
-    width: 45vw;
-    height: 70vw;
+    width: 80vw;
+    height: 120vw;
     margin: 0.5em 0;
   }
 
 }
 
 @media(max-width:1000px) {
-
-  header h1 {
-    font-size: 1.75em;
-    padding-top: 0.5em;
-  }
-
-  h2 {
-    font-size: 1.3em;
-  }
 
   header {
     height: 6.5em;
@@ -536,18 +527,6 @@ Order Show page
 }
 
 @media(max-width:750px) {
-
-  header h1 {
-    font-size: 1.5em;
-  }
-
-  h2 {
-    font-size: 1.1em;
-  }
-
-  h3 {
-    font-size: 1.0em;
-  }
 
   main {
     padding: 0 1em;
@@ -614,18 +593,6 @@ Order Show page
 
 @media(max-width:550px) {
 
-  header h1 {
-    font-size: 1.25em;
-  }
-
-  h2 {
-    font-size: 1.0em;
-  }
-
-  h3 {
-    font-size: 0.75em;
-  }
-
   header a {
     font-size: 0.85em;
   }
@@ -633,13 +600,6 @@ Order Show page
   form {
     width: 17.5em;
     padding: 0.5em;
-  }
-
-  .featurette-text p {
-    font-size: 0.75em;
-    line-height: 1.4em;
-    padding: 0.5em 0;
-    font-weight: bold;
   }
 
   footer p, footer a {
@@ -651,10 +611,10 @@ Order Show page
   }
 }
 
-@media(max-width:400px) {
+@media(max-width:374px) {
 
-  h1 {
-    width: 10em;
+  header img {
+    width: 80vw;
     text-align: center;
   }
 
