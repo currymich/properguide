@@ -432,7 +432,7 @@ Order Show page
   padding: 0 5px;
 }
 
-@media(max-width:1100px) {
+@media(max-width:1200px) {
 
   header {
     height: 3.5em;
@@ -478,7 +478,7 @@ Order Show page
 
 }
 
-@media(max-width:950px) {
+@media(max-width:1000px) {
 
   header h1 {
     font-size: 1.75em;
@@ -612,12 +612,6 @@ Order Show page
 
 }
 
-@media (max-width:650px) {
-  .product, .gallery img {
-    width: calc(100%);
-  }
-}
-
 @media(max-width:550px) {
 
   header h1 {
@@ -651,9 +645,13 @@ Order Show page
   footer p, footer a {
     font-size: 0.5em;
   }
+
+  .product, .gallery img {
+    width: calc(100%);
+  }
 }
 
-@media(max-width:374px) {
+@media(max-width:400px) {
 
   h1 {
     width: 10em;
