@@ -466,16 +466,6 @@ Order Show page
     margin-left: 2em;
   }
 
-  #lab_slips div {
-    flex-flow: column;
-  }
-
-  #lab_slips iframe {
-    width: 80vw;
-    height: 120vw;
-    margin: 0.5em 0;
-  }
-
 }
 
 @media(max-width:1000px) {
@@ -522,6 +512,16 @@ Order Show page
     font-size: 0.8em;
     line-height: 1.25em;
     padding: 0.5em 0;
+  }
+
+  #lab_slips div {
+    flex-flow: column;
+  }
+
+  #lab_slips iframe {
+    width: 80vw;
+    height: 120vw;
+    margin: 0.5em 0;
   }
 
 }
