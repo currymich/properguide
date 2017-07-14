@@ -9,8 +9,8 @@ var port        = process.env.PORT || 4000;
 // MIDDLEWARE
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.all('/*', function(req,res, next){
-  if(req.protocol == 'http' && req.headers.host != "localhost:4000"){
+app.get('/*', function(req,res, next){
+  if(!req.secure){
     res.redirect('https://www.properguideimplant.com'+req.url)
   }
   res.sendFile('public/index.html', { root: __dirname });
