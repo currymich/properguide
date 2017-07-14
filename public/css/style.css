@@ -414,6 +414,20 @@ table img {
   width: 7.5em;
 }
 
+/*******************
+
+Order Show page
+
+********************/
+
+#submit_payment {
+  padding: 2em;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 @media(max-width:1100px) {
 
   header {
