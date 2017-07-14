@@ -16,6 +16,8 @@ function enforceHttps(req, res, next) {
   } else {
     next();
   }
+},  function(req, res) {
+  res.sendFile('public/index.html', { root: __dirname });
 }
 
 app.use(enforceHttps);
