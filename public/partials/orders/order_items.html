@@ -101,7 +101,7 @@
 
     <form id="new_item" ng-show="new_item" ng-submit="order.add_order_item(order_item)" >
 
-      <label>Product ID
+      <label>Product Name
         <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products">
         </select>
       </label>
@@ -116,7 +116,7 @@
   </div>
 
   <div ng-show="home.currentUser.admin">
-    <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
+    <h5 ng-click="order_edit=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
 
     <form ng-submit="order.update_order(order.details.id)"  id="order_update" ng-show="order_edit">
         <label>New Due Date
