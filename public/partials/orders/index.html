@@ -44,7 +44,7 @@
 
   <div ng-controller="DentistController as dentists" ng-show="home.currentUser.admin">
 
-    <h5 style="text-align:center" ng-click="new_order=true">Create Order</h5>
+    <h5 style="text-align:center" ng-click="new_order=true" class="clickable">Create Order</h5>
     <form ng-show="new_order" ng-submit="orders.new_order(order)">
       <br>
 
