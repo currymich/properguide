@@ -148,6 +148,24 @@
       </div>
     </div>
 
+    <!-- Form to manually enter payment (cash/check) for record keeping purpose only -->
+    <div id="check_payment" ng-show="currentUser.admin">
+      <h5 ng-click="new_payment=true" style="text-align:center" class="clickable">Add check payment</h5>
+
+      <form id="new_payment" ng-show="new_payment" ng-submit="order.add_payment(payment)" >
+
+        <label>Amount
+          <input type="text" ng-model="payment.amount" required>
+        </label>
+
+        <label>Description
+          <input type="text" ng-model="payment.description" placeholder="Check 1134/Cash" required>
+        </label>
+
+        <button type="submit" name="button">Add Payment</button>
+      </form>
+    </div>
+
     <div>
       <br><br>
       <h6 style="text-align:center">To request a change to one of your orders, please contact us at properguideimplant@gmail.com</h6>

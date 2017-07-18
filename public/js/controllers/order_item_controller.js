@@ -176,8 +176,26 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     })
   }
 
+  function add_payment(payment) {
+    $http.post(`${server}/payments`,{
+      payment: {
+        amount: payment.amount,check_payment
+        description: payment.description
+      },
+      order_id: self.active_order
+    })
+    .then(function(response){
+      update_balance(response.data.payments)
+      if(response.data.status == 201){
+        document.getElementById("check_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful using  ${response.data.payment.description}</p>`;
+      } else {
+        document.getElementById("check_payment").innerHTML = `<p>Payment failed to save, please refresh and try again</p>`;
+      }
+    })
+  }
 
 
+  this.add_payment = add_payment;
   this.update_balance = update_balance;
   this.checkout = checkout;
   this.get_order_items = get_order_items;
