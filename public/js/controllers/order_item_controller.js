@@ -36,6 +36,11 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       self.details = response.data.order;
       self.dentist = response.data.dentist;
     })
+    .then(function() {
+      if (self.details.pay_due > 0){
+        $scope.accept_payments = true;
+      }
+    })
   }
 
   function add_order_item(params) {
