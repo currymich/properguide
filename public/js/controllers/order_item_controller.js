@@ -179,7 +179,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
   function add_payment(payment) {
     $http.post(`${server}/payments`,{
       payment: {
-        amount: payment.amount,check_payment
+        amount: payment.amount,check_payment,
         description: payment.description
       },
       order_id: self.active_order
