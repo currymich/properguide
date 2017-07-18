@@ -150,7 +150,7 @@
 
     <!-- Form to manually enter payment (cash/check) for record keeping purpose only -->
     <div id="check_payment" ng-show="currentUser.admin">
-      <h5 ng-click="new_payment=true" style="text-align:center" class="clickable">Add check payment</h5>
+      <h5 ng-click="new_payment=true" style="text-align:center" ng-show="accept_payments" class="clickable">Add check payment</h5>
 
       <form id="new_payment" ng-show="new_payment" ng-submit="order.add_payment(payment)" >
 

@@ -160,7 +160,8 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
               order_id: self.active_order
             })
             .then(function(response){
-              update_balance(response.data.payments)
+              update_balance(response.data.payments);
+              $scope.accept_payments = false;
               if(response.data.status == 201){
                 document.getElementById("cc_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful on card ${response.data.payment.description}</p>`;
               } else {
@@ -179,13 +180,14 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
   function add_payment(payment) {
     $http.post(`${server}/payments`,{
       payment: {
-        amount: payment.amount,check_payment,
+        amount: payment.amount,
         description: payment.description
       },
       order_id: self.active_order
     })
     .then(function(response){
-      update_balance(response.data.payments)
+      update_balance(response.data.payments);
+      $scope.accept_payments = false;
       if(response.data.status == 201){
         document.getElementById("check_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful using  ${response.data.payment.description}</p>`;
       } else {
