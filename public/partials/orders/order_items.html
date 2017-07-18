@@ -88,8 +88,8 @@
             <td>{{order.details.subtotal | currency}}</td>
             <td>{{order.details.tax | currency}}</td>
             <td>{{order.details.total | currency}}</td>
-            <td>{{order.pay_received | currency}}</td>
-            <td>{{order.amount_due | currency}}</td>
+            <td>{{order.details.pay_received | currency}}</td>
+            <td>{{order.details.pay_due | currency}}</td>
           </tr>
         </tbody>
       </table>

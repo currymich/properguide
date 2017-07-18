@@ -35,18 +35,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     .then(function(response) {
       self.details = response.data.order;
       self.dentist = response.data.dentist;
-      update_balance(response.data.payments)
     })
-  }
-
-  function update_balance(payments) {
-    self.pay_received = payments.reduce(function(sum, payment){
-      return sum + parseFloat(payment.amount);
-    }, 0)
-    self.amount_due = self.details.total - self.pay_received;
-    if (self.amount_due && self.amount_due > 0){
-      $scope.accept_payments = true;
-    }
   }
 
   function add_order_item(params) {
@@ -160,7 +149,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
               order_id: self.active_order
             })
             .then(function(response){
-              update_balance(response.data.payments);
+              self.get_order_details()
               $scope.accept_payments = false;
               if(response.data.status == 201){
                 document.getElementById("cc_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful on card ${response.data.payment.description}</p>`;
@@ -186,7 +175,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       order_id: self.active_order
     })
     .then(function(response){
-      update_balance(response.data.payments);
+      self.get_order_details()
       $scope.accept_payments = false;
       if(response.data.status == 201){
         document.getElementById("check_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful using  ${response.data.payment.description}</p>`;
@@ -198,7 +187,6 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
 
 
   this.add_payment = add_payment;
-  this.update_balance = update_balance;
   this.checkout = checkout;
   this.get_order_items = get_order_items;
   this.get_order_details = get_order_details;
