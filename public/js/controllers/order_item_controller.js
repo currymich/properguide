@@ -109,21 +109,21 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
 
   get_statuses()
 
-  function update_order(id){
+  function update_order(){
     //if new due date isnt chosen, used old one
     self.new_due_date = self.new_due_date ? self.new_due_date : new Date(self.details.due_date)
 
     self.new_status = self.new_status ? self.new_status.id : self.details.order_status_id
-    $http.patch(`${server}/orders/${id}`, {
+    $http.patch(`${server}/orders/${self.active_order}`, {
       order: {
         due_date: self.new_due_date,
-        order_status_id: self.new_status
+        order_status_id: self.new_status,
+        tax_exempt: self.details.tax_exempt
       }
     })
     .then(function(response){
+      document.getElementById('order_update').innerHTML = "<p>Order updated successfully</p>"
       self.details = response.data.order;
-
-      $state.go('order_items', {order_id: id})
     })
   }
 
@@ -197,6 +197,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       }
     })
   }
+
 
 
   this.update_order_details = update_order_details;

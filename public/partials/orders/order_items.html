@@ -120,7 +120,7 @@
     <div ng-show="currentUser.admin">
       <h5 ng-click="order_edit=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
 
-      <form ng-submit="order.update_order(order.details.id)"  id="order_update" ng-show="order_edit">
+      <form ng-submit="order.update_order()"  id="order_update" ng-show="order_edit">
           <label>New Due Date
             <input type="date" ng-model="order.new_due_date">
           </label>
@@ -128,6 +128,10 @@
           <label>New Status
             <select ng-model="order.new_status" ng-options="status as status.name for status in order.all_statuses">
             </select>
+          </label>
+
+          <label>Tax Exempt Order
+            <input type="checkbox" ng-model="order.details.tax_exempt">
           </label>
 
           <button type="submit" name="button">Update Details</button>
