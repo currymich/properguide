@@ -35,6 +35,7 @@ function AuthController($http, $state, $scope, $rootScope, AuthTokenFactory) {
     $http.post(`${server}/dentists`, {dentist})
     .then(function(response) {
       if (response.data.status == 201) {
+        document.getElementById('dentist_signup').innerHTML = "Dentist Created Successfully"
         self.flash = ""
         $state.go('orders');
       } else {
