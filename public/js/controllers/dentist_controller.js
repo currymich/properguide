@@ -19,8 +19,8 @@ function DentistController($http, $state) {
         phone: self.all_dentists.phone,
         office_name: self.all_dentists.office_name,
         address: self.all_dentists.address,
-        address_state: self.all_dentists.address_state,
         address_city: self.all_dentists.address_city,
+        address_state: self.all_dentists.address_state,
         address_zip: self.all_dentists.address_zip,
         license_num: self.all_dentists.license_num}})
     .then(function(response) {
@@ -28,7 +28,7 @@ function DentistController($http, $state) {
         self.flash = ""
         document.getElementById('dentist_update').innerHTML = "Profile Update Successful"
         self.all_dentists = response.data.dentist;
-        $state.go('dentist', {dentist_id: response.data.dentist.id})
+        $state.go('orders')
       } else {
         self.flash = "Bad Params"
       }

@@ -49,7 +49,7 @@
     <div ng-controller="DentistController as dentists">
 
       <h5 style="text-align:center" ng-click="new_order=true" class="clickable">Create Order</h5>
-      <form ng-show="new_order" ng-submit="orders.new_order(order)">
+      <form ng-show="new_order" id="dentist_update" ng-submit="orders.new_order(order)">
         <br>
 
         <label>Dentist
@@ -134,7 +134,7 @@
         <a ng-show="home.currentUser.admin" target="_blank" href="https://taxcloud.net/#Find-a-Rate">* Find tax rate</a>
 
       </div>
-      
+
     </div>
 
   </div>
