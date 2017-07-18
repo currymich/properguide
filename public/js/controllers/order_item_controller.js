@@ -43,6 +43,14 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     })
   }
 
+  function update_order_details() {
+    $http.get(`${server}/orders/${self.active_order}`)
+    .then(function(response) {
+      self.details = response.data.order;
+      self.dentist = response.data.dentist;
+    })
+  }
+
   function add_order_item(params) {
     $http.post(`${server}/orders/${self.active_order}/order_items`, {
       order_item: {
@@ -57,7 +65,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       document.getElementById("new_item").reset();
     })
     .then(function(){
-      get_order_details();
+      self.update_order_details();
     })
     .then(function(){
       $state.go('order_items', {order_id: self.active_order})
@@ -71,7 +79,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
         self.items = response.data.order_items;
       })
       .then(function(){
-        get_order_details();
+        self.update_order_details();
       })
       .then(function(){
         $state.go('order_items', {order_id: self.active_order})
@@ -85,7 +93,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       self.items = response.data.order_items;
     })
     .then(function(){
-      get_order_details();
+      self.update_order_details();
     })
     .then(function(){
       $state.go('order_items', {order_id: self.active_order})
@@ -154,7 +162,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
               order_id: self.active_order
             })
             .then(function(response){
-              self.get_order_details()
+              self.update_order_details()
               $scope.accept_payments = false;
               if(response.data.status == 201){
                 document.getElementById("cc_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful on card ${response.data.payment.description}</p>`;
@@ -180,7 +188,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       order_id: self.active_order
     })
     .then(function(response){
-      self.get_order_details()
+      self.update_order_details()
       $scope.accept_payments = false;
       if(response.data.status == 201){
         document.getElementById("check_payment").innerHTML = `<p>Payment of $${response.data.payment.amount} successful using  ${response.data.payment.description}</p>`;
@@ -191,6 +199,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
   }
 
 
+  this.update_order_details = update_order_details;
   this.add_payment = add_payment;
   this.checkout = checkout;
   this.get_order_items = get_order_items;
