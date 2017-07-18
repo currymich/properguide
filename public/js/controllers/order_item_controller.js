@@ -148,7 +148,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
       var confirmation = confirm(`Confirm: Pay full balance for this order using card ${payload.description}`);
       if (confirmation == true) {
         //use nonce to charge card for given amount (full price of order)
-        $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
+        $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order, amount_due: self.amount_due})
         .then(function(response){
           if(response.data.status == 202){
             //If charge successful, save payment info to server (payment amount and description of card used - last two digits, generated with nonce payload)
