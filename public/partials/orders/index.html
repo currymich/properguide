@@ -53,7 +53,7 @@
         <br>
 
         <label>Dentist
-          <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in dentists.all_dentists | filter : {name: '!admin'}">
+          <select ng-model="order.dentist" ng-options="dentist as dentist.name for dentist in all_dentists | filter : {name: '!admin'}">
           </select>
         </label>
 

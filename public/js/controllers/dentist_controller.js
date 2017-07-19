@@ -6,7 +6,7 @@ function DentistController($http, $state) {
   function get_dentists() {
     $http.get(`${server}/dentists`)
       .then(function(response) {
-        self.all_dentists = response.data.dentists;
+        $scope.all_dentists = response.data.dentists;
       });
   }
 
