@@ -147,8 +147,20 @@
       <div id="dropin-container"></div>
 
       <div id="submit_payment">
-        <button ng-click="order.checkout()" class="button-primary">Use This Card</button>
-        <p style="text-align:center;">Click button only once to charge selected card</p>
+        <form ng-submit="order.checkout(payment)">
+
+            <label>Charge Full Amount
+              <input type="checkbox" ng-init="payment.charge_full = true" ng-model="payment.charge_full">
+            </label>
+
+            <label ng-hide="payment.charge_full">Amount to charge to card
+              <input type="text" placeholder="50" ng-model="payment.charge_amount">
+            </label>
+
+            <button type="submit" class="button-primary">Use This Card</button>
+            <p style="text-align:center;">Click button only once to charge selected card</p>
+
+        </form>
       </div>
     </div>
 

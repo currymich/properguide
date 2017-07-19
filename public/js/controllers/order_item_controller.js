@@ -140,17 +140,23 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
         });
   });
 
-  function checkout() {
+  function checkout(payment) {
     //generate nonce with payment info and selected card
     self.instance.requestPaymentMethod(function (err, payload) {
       //double check user wants to use the selected card (once button clicked, card is charged)
       if (err) {
         console.log(err);
       }
-      var confirmation = confirm(`Confirm: Pay full balance for this order using card ${payload.description}`);
+      var confirmation = confirm(`Confirm: Payment of $${payment.charge_full ? self.details.pay_due : payment.charge_amount} for this order using card ${payload.description}`);
       if (confirmation == true) {
-        //use nonce to charge card for given amount (full price of order)
-        $http.post(`${server}/braintree/checkout`, {nonce: payload.nonce, order_id: self.active_order})
+        console.log(payment);
+        //use nonce to charge card for given amount
+        $http.post(`${server}/braintree/checkout`, {
+          nonce: payload.nonce,
+          order_id: self.active_order,
+          amount:
+            payment.charge_full ? self.details.pay_due : payment.charge_amount
+          })
         .then(function(response){
           if(response.data.status == 202){
             //If charge successful, save payment info to server (payment amount and description of card used - last two digits, generated with nonce payload)
