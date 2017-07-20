@@ -51,6 +51,10 @@ angular.module('properGuide', ['ui.router'])
       url: '/privacy',
       templateUrl: 'partials/legal/privacy.html'
     })
+    .state('refund', {
+      url: '/refund',
+      templateUrl: 'partials/legal/refund.html'
+    })
 
     $locationProvider.html5Mode(true);
   }
