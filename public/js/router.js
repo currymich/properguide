@@ -43,6 +43,14 @@ angular.module('properGuide', ['ui.router'])
       url: '/dentist/:dentist_id',
       templateUrl: 'partials/dentist/show.html'
     })
+    .state('terms', {
+      url: '/terms',
+      templateUrl: 'partials/legal/terms.html'
+    })
+    .state('privacy', {
+      url: '/privacy',
+      templateUrl: 'partials/legal/privacy.html'
+    })
 
     $locationProvider.html5Mode(true);
   }
