@@ -432,8 +432,7 @@ Order Show page
   padding: 0 5px;
 }
 
-@media only screen
-  and (max-width:1200px) {
+@media (max-width:1200px) {
 
   header {
     height: 3.5em;
@@ -469,8 +468,7 @@ Order Show page
 
 }
 
-@media only screen
-  and (max-width:1000px) {
+@media (max-width:1000px) {
 
   header {
     height: 6.5em;
@@ -528,8 +526,7 @@ Order Show page
 
 }
 
-@media only screen
-  and (max-width:750px) {
+@media (max-width:750px) {
 
   main {
     padding: 0 1em;
@@ -594,8 +591,7 @@ Order Show page
 
 }
 
-@media only screen
-  and (max-width:550px) {
+@media (max-width:550px) {
 
   header a {
     font-size: 0.85em;
@@ -615,8 +611,7 @@ Order Show page
   }
 }
 
-@media only screen
-  and (max-width:374px) {
+@media (max-width:374px) {
 
   header img {
     width: 80vw;
