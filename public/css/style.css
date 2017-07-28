@@ -26,6 +26,10 @@ a {
   cursor: pointer;
 }
 
+h5.clickable:hover{
+  color: #ffb400;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -157,7 +161,7 @@ Home landing page styling
 ***********************/
 
 .divider {
-  margin: 3em 0;
+  margin: 4em 0;
 }
 
 .featurette:first-of-type {
@@ -381,6 +385,10 @@ orders page
   justify-content: space-around;
 }
 
+table {
+  padding: 2em 0;
+}
+
 table, table thead, table tr {
   width: 100%;
 }
@@ -400,7 +408,7 @@ table thead {
   margin: 0.25em 0;
 }
 
-table tr {
+table tr, caption {
   padding: 0.25em 0;
   border: 1px solid #eee;
 }

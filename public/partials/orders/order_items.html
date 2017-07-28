@@ -70,29 +70,6 @@
           </tr>
         </tbody>
       </table>
-
-      <table>
-        <thead>
-          <tr>
-            <td>Shipping</td>
-            <td>Subtotal</td>
-            <td>Tax</td>
-            <td>Total Cost</td>
-            <td>Pay Recieved</td>
-            <td>Balance</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{order.details.shipping | currency}}</td>
-            <td>{{order.details.subtotal | currency}}</td>
-            <td>{{order.details.tax | currency}}</td>
-            <td>{{order.details.total | currency}}</td>
-            <td>{{order.details.pay_received | currency}}</td>
-            <td>{{order.details.pay_due | currency}}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
 
     <!-- Form to add a new item to this order, only visible if user is admin and order is in-progress or 'received' -->
@@ -140,9 +117,57 @@
       <h5 style="color:red; text-align: center">{{auth.flash}}</h5>
     </div>
 
-    <!-- Form to submit a CC payment -->
-    <div id="cc_payment" ng-show="accept_payments">
+    <!-- Table showing payments received so far -->
+    <div>
       <hr class="divider">
+      <h5>Payments Received for Order</h5>
+
+      <table>
+        <thead>
+          <tr>
+            <td>Date</td>
+            <td>Description</td>
+            <td>Amount</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="order" ng-repeat='payment in order.payments | orderBy: "created_at"'>
+            <td>{{payment.created_at | date : 'short'}}</td>
+            <td>{{payment.description}}</td>
+            <td>{{payment.amount | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <td>Shipping</td>
+            <td>Subtotal</td>
+            <td>Tax</td>
+            <td>Total Cost</td>
+            <td>Pay Recieved</td>
+            <td>Balance</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{order.details.shipping | currency}}</td>
+            <td>{{order.details.subtotal | currency}}</td>
+            <td>{{order.details.tax | currency}}</td>
+            <td>{{order.details.total | currency}}</td>
+            <td>{{order.details.pay_received | currency}}</td>
+            <td>{{order.details.pay_due | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Form to submit a CC payment -->
+    <hr class="divider">
+    <h5>Make a New Payment</h5>
+
+    <div id="cc_payment" ng-show="accept_payments">
 
       <div id="dropin-container"></div>
 

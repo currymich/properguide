@@ -35,6 +35,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     .then(function(response) {
       self.details = response.data.order;
       self.dentist = response.data.dentist;
+      self.payments = response.data.payments;
     })
     .then(function() {
       if (self.details.pay_due > 0){
