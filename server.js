@@ -9,6 +9,8 @@ var port        = process.env.PORT || 4000;
 // MIDDLEWARE
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use('/sitemap', express.static('sitemap.txt'))
+
 app.use(function (req, res, next) {
   if (req.get("x-forwarded-proto") !== "https" &&
     process.env.NODE_ENV === "production") {
