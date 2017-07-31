@@ -75,7 +75,7 @@
     <!-- Form to add a new item to this order, only visible if user is admin and order is in-progress or 'received' -->
     <div ng-controller="ProductController as products" ng-if="order.editable">
 
-      <h5 ng-click="new_item=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Add item to order</h5>
+      <h5 ng-click="new_item=!new_item" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Add item to order</h5>
 
       <form id="new_item" ng-show="new_item" ng-submit="order.add_order_item(order_item)" >
 
@@ -95,7 +95,7 @@
 
     <!-- Form to update due date and status of order -->
     <div ng-show="currentUser.admin">
-      <h5 ng-click="order_edit=true" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
+      <h5 ng-click="order_edit=!order_edit" ng-show="home.currentUser.admin" style="text-align:center" class="clickable">Update order details</h5>
 
       <form ng-submit="order.update_order()"  id="order_update" ng-show="order_edit">
           <label>New Due Date
@@ -191,7 +191,7 @@
 
     <!-- Form to manually enter payment (cash/check) for record keeping purpose only -->
     <div id="check_payment" ng-show="currentUser.admin">
-      <h5 ng-click="new_payment=true" style="text-align:center" ng-show="accept_payments" class="clickable">Add check payment</h5>
+      <h5 ng-click="new_payment=!new_payment" style="text-align:center" ng-show="accept_payments" class="clickable">Add check payment</h5>
 
       <form id="new_payment" ng-show="new_payment" ng-submit="order.add_payment(payment)" >
 

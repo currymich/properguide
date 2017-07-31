@@ -34,7 +34,7 @@
     <!-- Profile details update form -->
     <div ng-controller="DentistController as dentists">
 
-      <h5 ng-click="edit_acct=true" style="text-align:center" class="clickable">Edit Account</h5>
+      <h5 ng-click="edit_acct=!edit_acct" style="text-align:center" class="clickable">Edit Account</h5>
       <form ng-submit="dentists.update( home.currentUser.dentist_id)"  id="dentist_update" ng-show="edit_acct">
 
           <label>Name
@@ -82,7 +82,7 @@
     <!-- Password change form -->
     <div ng-controller="AuthController as auth">
 
-      <h5 ng-click="new_pass=true" style="text-align:center" class="clickable">New Password</h5>
+      <h5 ng-click="new_pass=!new_pass" style="text-align:center" class="clickable">New Password</h5>
       <form ng-submit="auth.update( home.currentUser.id)"  id="user_update" ng-show="new_pass">
 
           <label>New Password

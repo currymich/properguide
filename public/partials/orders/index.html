@@ -48,7 +48,7 @@
     <!-- Form to create a new order for an existing dentist -->
     <div ng-controller="DentistController as dentists">
 
-      <h5 style="text-align:center" ng-click="new_order=true" class="clickable">Create Order</h5>
+      <h5 style="text-align:center" ng-click="new_order=!new_order" class="clickable">Create Order</h5>
       <form ng-show="new_order" id="dentist_update" ng-submit="orders.new_order(order)">
         <br>
 
@@ -77,7 +77,7 @@
     <!-- Form to enroll a new dentist -->
     <div ng-controller="AuthController as auth">
 
-      <h5 ng-click="new_dentist=true" style="text-align:center" class="clickable">Create new dentist</h5>
+      <h5 ng-click="new_dentist=!new_dentist" style="text-align:center" class="clickable">Create new dentist</h5>
 
       <div ng-show="new_dentist">
 
