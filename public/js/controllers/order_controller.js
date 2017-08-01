@@ -59,14 +59,16 @@ function OrderController($http, $state, $scope, $window) {
       })
   }
 
-  function delete_order(order) {
-    var confirmation = confirm(`Are you sure you want to delete the order for ${order.patient_name}? (This cannot be undone)`);
-   if (confirmation == true) {
-      $http.delete(`${server}/orders/${order.id}`)
-        .then(function(response) {
+  function cancel_order(order) {
+    var confirmation = confirm(`Are you sure you want to cancel the order for ${order.patient_name}?`);
+    if (confirmation == true) {
+      $http.patch(`${server}/orders/${order.id}`, {
+        order: {
+          order_status_id: 5,
+        }
+      })
+      .then(function(response) {
         $scope.all_orders = response.data.orders;
-
-        $state.go('orders')
       })
     }
 
@@ -75,5 +77,5 @@ function OrderController($http, $state, $scope, $window) {
   this.get_order = get_order;
   this.get_orders = get_orders;
   this.new_order = new_order;
-  this.delete_order = delete_order;
+  this.cancel_order = cancel_order;
 }

@@ -28,7 +28,7 @@
           <th></th>
           <th>Due Date</th>
           <th>Status</th>
-          <th>Remove</th>
+          <th>Cancel</th>
         </tr>
       </thead>
       <tbody>
@@ -39,7 +39,7 @@
           <td ng-click="orders.get_order(order)" class="clickable">View Order</td>
           <td>{{order.due_date | date : format : short}}</td>
           <td>{{order.order_status.name}}</td>
-          <td ng-show="home.currentUser.admin" ng-click="orders.delete_order(order)" class="clickable">X</td>
+          <td ng-show="home.currentUser.admin" ng-click="orders.cancel_order(order)" class="clickable">X</td>
           <br>
         </tr>
       </tbody>
