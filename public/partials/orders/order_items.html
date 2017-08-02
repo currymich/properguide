@@ -26,14 +26,19 @@
           <br>{{order.dentist.address_city}}, {{order.dentist.address_state}} {{order.dentist.address_zip}}
         </p>
 
-        <br>
-
-        <h5> Status: {{order.details.order_status.name}}</h5>
-        <h5 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h5>
-
       </div>
 
       <br>
+
+      <h5> Status: {{order.details.order_status.name}}</h5>
+      <h5 ng-style="{'background': (order.details.due_date | DueDate)}">Due Date: {{order.details.due_date | date : format : short}}</h5>
+
+      <br>
+
+      <h6>Please allow for 7 business days in-lab turnaround and 2 days for shipping and handling.</h6>
+
+      <br>
+
       <h6>Instructions:
         <br>{{order.details.instructions}}
       </h6>
