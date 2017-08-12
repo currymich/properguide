@@ -41,7 +41,7 @@
 <h6>Please contact us or log in for pricing information</h6><br>
 
 <div id="products" ng-controller="ProductController as products">
-  <div class="product" ng-repeat='product in products.all_products'>
+  <div class="product" ng-repeat='product in products.all_products | filter : {hidden: false}'>
     <h6>{{product.name}}</h6>
 
     <img ng-init="imgsrc=product.image_url" ng-mouseover="imgsrc=product.alt_image"ng-mouseout="imgsrc=product.image_url" ng-src={{imgsrc}}>

@@ -85,7 +85,7 @@
       <form id="new_item" ng-show="new_item" ng-submit="order.add_order_item(order_item)" >
 
         <label>Product Name
-          <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products">
+          <select ng-model="order_item.product" ng-options="product as product.name for product in products.all_products | filter : {active: true}">
           </select>
         </label>
 
