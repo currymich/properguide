@@ -36,6 +36,71 @@ img {
 }
 
 form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border: 1px solid #eee;
+  padding: 2em;
+  max-width: 500px;
+  width: 100%;
+  margin: 3em auto;
+}
+
+label {
+  width: 80%;
+  display: block;
+  margin: 0.5em 0;
+  color: #999999;
+}
+
+label:last-of-type {
+  margin-bottom: 3em;
+}
+
+#orders_to_display label {
+  margin: 0.5em 0;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em 0.5em;
+  font-size: 1.2em;
+  border-radius: 3px;
+  border: 1px solid #D9D9D9;
+  color: #555;
+}
+
+form button::placeholder {
+  color: #ddd;
+}
+
+form button {
+  display: block;
+  border: 1px solid #777;
+  background-color: #cceeff;
+  font-size: 0.9rem;
+  padding: 0rem 0.8em;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  color: black;
+  border-radius: 5px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+form button:hover, form button:focus {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+form button:active {
+  opacity: 1;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
+}
+
+/*form {
   width: 30em;
   padding: 0.5em;
   margin: 1em auto;
@@ -82,7 +147,7 @@ form button {
 
 form button:hover {
   background: #ccc;
-}
+}*/
 
 body {
   min-height: 100vh;
@@ -557,8 +622,8 @@ Order Show page
   }
 
   form input, form textarea, form select {
-    width: 80%;
-    margin: 0.25em 0;
+    width: 100%;
+    margin: 0.25em auto;
   }
 
   form input[type="checkbox"] {
