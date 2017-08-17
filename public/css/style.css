@@ -191,16 +191,19 @@ Home landing page styling
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  overflow: visible;
 }
 
 .featurette-image.pull-right {
   order: 1;
   margin-left: 4em;
+  box-shadow: -2px 0 2px #aaa;
 }
 
 .featurette-image.pull-left {
   order: -1;
   margin-right: 4em;
+  box-shadow: 2px 0 2px #aaa;
 }
 
 .featurette-text h5 span {
@@ -236,6 +239,7 @@ training page
 .gallery img {
   width: calc(100%/3 - 1em);
   margin: 0.5em;
+  box-shadow: 3px 3px 4px #aaa;
 }
 
 #training .featurette-image {
@@ -319,6 +323,7 @@ lab page
 
 .product img {
   display: block;
+  box-shadow: 3px 3px 4px #aaa;
 }
 
 .product h3 {
