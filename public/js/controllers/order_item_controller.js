@@ -61,6 +61,7 @@ function OrderItemController($http, $state, $scope, $window, $filter) {
     })
     .then(function(response) {
       self.items = response.data.order_items;
+      $scope.order_items.product = "";
     })
     .then(function() {
       document.getElementById("new_item").reset();
