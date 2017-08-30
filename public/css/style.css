@@ -343,6 +343,30 @@ training page
     background-image: url("../img/special_needs4.jpg");
   }
 
+.newsletter .section:first-of-type {
+  margin-top: 3em;
+}
+
+.newsletter .section > .heading {
+  padding: 0.25em 0.5em;
+  background: #ddd;
+  font-weight: bold;
+}
+
+.newsletter .article:first-of-type {
+  padding-top: 1em;
+}
+
+.newsletter .article .heading:first-of-type {
+  font-weight: bold;
+  color: #555;
+  font-size: 1.125em;
+}
+
+.newsletter .article a {
+  color: #be5e26;
+}
+
 /*********************
 
 lab page
