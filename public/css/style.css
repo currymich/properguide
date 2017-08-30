@@ -343,6 +343,46 @@ training page
     background-image: url("../img/special_needs4.jpg");
   }
 
+  #conference_list {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  #conference_list > h5 {
+    width: 100%;
+  }
+
+  .conference {
+    width: calc(100%/4);
+    margin-top: 1.5em;
+  }
+
+  @media (max-width:1100px) {
+    .conference {
+      width: calc(100%/3);
+      margin-top: 0.75em;
+    }
+  }
+
+  @media (max-width:800px) {
+    .conference {
+      width: calc(100%/2);
+    }
+  }
+
+  @media (max-width:550px) {
+    #conference_list {
+      flex-flow: column;
+      align-items: center;
+    }
+  }
+
+  /*********************
+
+  newsletter page
+
+  *********************/
+
 .newsletter .section:first-of-type {
   margin-top: 3em;
 }
