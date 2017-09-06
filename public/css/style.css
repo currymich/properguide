@@ -307,6 +307,10 @@ training page
   box-shadow: 3px 3px 4px #aaa;
 }
 
+.gallery iframe {
+  margin-top: 1em; 
+}
+
 #training .featurette-image {
   background-image: url("../img/hiossen_class1.jpg");
 }
