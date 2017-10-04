@@ -219,6 +219,11 @@ footer p, footer a {
   padding: 0.5em;
 }
 
+.clearfix::after { /*Clearfix*/
+  content: "";
+  display: table;
+  clear: both;
+}
 /**********************
 
 Home landing page styling
@@ -308,7 +313,7 @@ training page
 }
 
 .gallery iframe {
-  margin-top: 1em; 
+  margin-top: 1em;
 }
 
 #training .featurette-image {
@@ -387,6 +392,26 @@ training page
 
   *********************/
 
+#newsletter-header .images, #newsletter-header .links {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2em 0;
+}
+
+#newsletter-header .links a {
+  color: blue;
+}
+
+#newsletter-header .links a:hover {
+  color: #be5e26;
+}
+
+#newsletter-header .images img {
+  max-width: 350px;
+}
+
 .newsletter .section:first-of-type {
   margin-top: 3em;
 }
@@ -408,6 +433,10 @@ training page
 }
 
 .newsletter .article a {
+  color: blue;
+}
+
+.newsletter .article a:hover {
   color: #be5e26;
 }
 

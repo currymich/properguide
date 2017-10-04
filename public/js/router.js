@@ -28,8 +28,10 @@ angular.module('properGuide', ['ui.router'])
       templateUrl: 'partials/contact.html'
     })
     .state('newsletter', {
-      url: '/newsletter',
-      templateUrl: 'partials/newsletter.html'
+      url: '/newsletter/{year}/{month}',
+      templateUrl: function(stateParams){
+        return `partials/newsletter/${stateParams.year}/newsletter_${stateParams.month}.html`;
+       }
     })
     .state('login', {
       url: '/login',
