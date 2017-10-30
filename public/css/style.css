@@ -409,7 +409,8 @@ training page
 }
 
 #newsletter-header .images img {
-  max-width: 350px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .newsletter .section:first-of-type {
