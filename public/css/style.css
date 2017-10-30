@@ -314,6 +314,7 @@ training page
 
 .gallery iframe {
   margin-top: 1em;
+  box-shadow: 3px 3px 4px #aaa;
 }
 
 #training .featurette-image {
