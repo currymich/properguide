@@ -367,6 +367,35 @@ training page
     margin-top: 1.5em;
   }
 
+  .testimonials {
+    max-width: 80%;
+    margin: 5em auto;
+  }
+
+  .testimony {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2em 0;
+  }
+
+  .testimony img {
+    width: 25%;
+    max-width: 200px;
+    box-shadow: 3px 3px 4px #aaa;
+  }
+
+  .testimony div {
+    max-width: 60%;
+  }
+
+  .testimony div p {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+  }
+
   @media (max-width:1100px) {
     .conference {
       width: calc(100%/3);
