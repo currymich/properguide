@@ -29,7 +29,7 @@ angular.module('properGuide', ['ui.router'])
     })
     .state('newsletter', {
       url: '/newsletter',
-      templateUrl: 'partials/newsletter/2017/newsletter_dec.html'
+      templateUrl: 'partials/newsletter/2018/newsletter_jan.html'
     })
     .state('newsletter_month', {
       url: '/newsletter/{year}/{month}',
